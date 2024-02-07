@@ -1,0 +1,57 @@
+Notes for Apple / MacOS:
+
+tl;dr: MacOS supports OpenGL 4.1. We use features that were added later:
+  - Immutable texture storage (4.2)
+  - GLSL version 420, with "layout(binding=N)" (4.2)
+  - Debut output (4.3)
+
+"Hints" for making things work in MacOS:
+
+- Download a MacOS version of Premake at 
+  https://premake.github.io/download
+
+  Look at the list of generators
+  https://premake.github.io/docs/Using-Premake
+
+  (E.g., 'xcode4' would generate XCode project files.)
+
+- Apple-specific code is untested. It's included for reference if you want to
+  attempt to run the exercises / courseworks on an Apple-machine. The code in
+  question may not work, though, and it may not fix all issues that you will
+  encounter.
+
+- Can't use immutable texture storage. glTexStorage2D() was added in 4.2. Code
+  currently has an __APPLE__ ifdef that falls back to "normal" storage under
+  Apple.
+
+  See: support/context.cpp, in Context::create_tex_image_()
+
+- Apple doesn't seem to support debug output, which was standardized in 4.3.
+  It is left disabled under Apple.
+
+  See: support/context.cpp, in Context::init_gl_debug_()
+
+- Current GLSL shaders use #version 420, which may not be supported on Apple.
+  In particular, the shaders use the layout(binding=X) feature that was
+  introduced in GLSL version 420.
+
+  Potential workaround: use the ARB_shading_language_420pack extension, if it
+  is available on Apple. Otherwise you will need to remove the layout
+  statement and add some additional boilerplate code.
+
+  E.g. in support/context.cpp. In the shader definitions (strings):
+
+    uniform sampler2D uTexSoftFB; // remove "layout(binding = 0) statement
+
+  Then, the uniform sampler location needs to be bound in code. E.g., at the
+  end of the create_program() function:
+
+    auto const texSoftLoc = glGetUniformLocation( prog, "uTexSoftFB" );
+
+    glBindProgram( prog );
+    glUniform1i( texSoftLoc, 0 ); // 0 indicates GL_TEXTURE0
+	glBindProgram( 0 );
+
+  See https://www.khronos.org/opengl/wiki/Sampler_(GLSL) for details.
+
+%EOF
