@@ -1,0 +1,1 @@
+This project uses the following open source libraries: Intel Embree (APACHE License), rapidobj (MIT License), stb (Public Domain License). 
