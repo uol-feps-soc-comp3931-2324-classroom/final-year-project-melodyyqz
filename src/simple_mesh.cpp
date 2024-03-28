@@ -1,4 +1,5 @@
 #include "simple_mesh.hpp"
+#include "../thirdparty/embree/include/embree4/rtcore.h"
 
 SimpleMeshData concatenate(SimpleMeshData aM, SimpleMeshData const& aN)
 {

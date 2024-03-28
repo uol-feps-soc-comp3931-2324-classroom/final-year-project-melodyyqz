@@ -1,5 +1,6 @@
 #include "rapidobj/rapidobj.hpp"
-
+#include <embree4/rtcore.h>
+#include <embree4/rtcore_common.h>
 #include <iostream>
 
 int main() {
