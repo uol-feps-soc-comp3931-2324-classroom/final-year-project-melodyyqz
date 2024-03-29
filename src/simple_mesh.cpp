@@ -16,6 +16,15 @@ SimpleMeshData load_wavefront_obj(char const* aPath)
 	rapidobj::Triangulate(result);
 	SimpleMeshData ret;
 
+	auto num_triangles = size_t();
+
+	for (const auto& shape : result.shapes) {
+		num_triangles += shape.mesh.num_face_vertices.size();
+	}
+
+	std::cout << "Shapes:    " << result.shapes.size() << '\n';
+	std::cout << "Triangles: " << num_triangles << '\n';
+
 	// Initialize normals to zero
 	std::vector<Vec3f> normals(result.attributes.positions.size(), Vec3f{ 0.0f, 0.0f, 0.0f });
 	
@@ -45,10 +54,10 @@ SimpleMeshData load_wavefront_obj(char const* aPath)
 				});
 
 			//load texcoords
-			ret.texcoords.emplace_back(Vec2f{
+			/*ret.texcoords.emplace_back(Vec2f{
 				result.attributes.texcoords[idx.texcoord_index * 2 + 0],
 				result.attributes.texcoords[idx.texcoord_index * 2 + 1]
-				});
+				});*/
 		}
 	}
 	return ret;
