@@ -15,6 +15,7 @@ struct SimpleMeshData
 	//GLuint vao;
 };
 
+SimpleMeshData load_wavefront_obj(char const* aPath);
 SimpleMeshData concatenate(SimpleMeshData, SimpleMeshData const&);
 
 #endif // SIMPLE_MESH_HPP_C6B749D6_C83B_434C_9E58_F05FC27FEFC9
