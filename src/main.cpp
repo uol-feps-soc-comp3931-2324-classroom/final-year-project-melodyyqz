@@ -1,37 +1,15 @@
+#define __SSE2__
+
 #include "rapidobj/rapidobj.hpp"
 #include <embree4/rtcore.h>
 #include <embree4/rtcore_common.h>
 #include <iostream>
-
+#include "../embree/tutorials/common/tutorial/tutorial.h"
 #include "simple_mesh.hpp"
 
 int main() {
 
-    // Load the Armadillo model
-	/*rapidobj::Result armadillo = rapidobj::ParseFile("../../src/assets/Armadillo.obj");
-
-    if (armadillo.error) {
-        std::cout << armadillo.error.code.message() << '\n';
-        return EXIT_FAILURE;
-    }
-    bool success = rapidobj::Triangulate(armadillo);
-
-    if (!success) {
-        std::cout << armadillo.error.code.message() << '\n';
-        return EXIT_FAILURE;
-    }*/
-
     load_wavefront_obj("../../src/assets/Armadillo.obj");
-
-    // Print the number of shapes and triangles
-    /*auto num_triangles = size_t();
-
-    for (const auto& shape : armadillo.shapes) {
-        num_triangles += shape.mesh.num_face_vertices.size();
-    }
-
-    std::cout << "Shapes:    " << armadillo.shapes.size() << '\n';
-    std::cout << "Triangles: " << num_triangles << '\n';*/
 
     // Create an Embree device
     /*
