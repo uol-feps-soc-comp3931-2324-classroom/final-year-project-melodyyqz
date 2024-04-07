@@ -1,4 +1,5 @@
 #define __SSE2__
+#define TASKING_TBB
 
 #include "rapidobj/rapidobj.hpp"
 #include <embree4/rtcore.h>
@@ -9,7 +10,7 @@
 
 int main() {
 
-    load_wavefront_obj("../../src/assets/Armadillo.obj");
+    SimpleMeshData armadilloMeshData = load_wavefront_obj("../../src/assets/Armadillo.obj");
 
     // Create an Embree device
     /*
