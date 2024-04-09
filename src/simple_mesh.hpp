@@ -4,10 +4,12 @@
 
 // Copyright 2009-2021 Intel Corporation
 // SPDX-License-Identifier: Apache-2.0
+#include <glad/glad.h>
+#include <vector>
 
 #include "../thirdparty/embree/tutorials/common/tutorial/tutorial_device.h"
 #include "../thirdparty/embree/common/math/vec3fa.h"
-#include <vector>
+
 
 #include "util/vmlib/vec3.hpp"
 #include "util/vmlib/vec2.hpp"
@@ -18,7 +20,6 @@ struct SimpleMeshData
 	std::vector<Vec3f> colors;
 	std::vector<Vec3f> normals;
 	std::vector<Vec2f> texcoords;
-	//GLuint vao;
 };
 
 SimpleMeshData load_wavefront_obj(char const* aPath);

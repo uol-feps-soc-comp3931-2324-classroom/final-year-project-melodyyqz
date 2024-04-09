@@ -1,5 +1,5 @@
-#define __SSE2__
 #define TASKING_TBB
+#define __SSE2__
 
 #include "rapidobj/rapidobj.hpp"
 #include <embree4/rtcore.h>
@@ -7,11 +7,28 @@
 #include <iostream>
 #include "../embree/tutorials/common/tutorial/tutorial.h"
 #include "simple_mesh.hpp"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 int main() {
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    GLFWwindow* window = glfwCreateWindow(800, 800, "Caustics", NULL, NULL);
+    if (window == NULL) {
+		std::cout << "Failed to create GLFW window" << std::endl;
+		glfwTerminate();
+		return -1;
+	}
+    glfwMakeContextCurrent(window);
 
     SimpleMeshData armadilloMeshData = load_wavefront_obj("../../src/assets/Armadillo.obj");
 
+    while (!glfwWindowShouldClose(window)) {
+		glfwPollEvents();
+	}
     // Create an Embree device
     /*
     RTCDevice device = rtcNewDevice(nullptr);
@@ -33,7 +50,8 @@ int main() {
 
     rtcReleaseScene(scene);
     rtcReleaseDevice(device);*/
-
+    glfwDestroyWindow(window);
+    glfwTerminate();
     return EXIT_SUCCESS;
 
 }
