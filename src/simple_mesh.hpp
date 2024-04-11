@@ -5,6 +5,7 @@
 // Copyright 2009-2021 Intel Corporation
 // SPDX-License-Identifier: Apache-2.0
 #include <vector>
+#include <glad/glad.h>
 
 #include "../thirdparty/embree/tutorials/common/tutorial/tutorial_device.h"
 #include "../thirdparty/embree/common/math/vec3fa.h"
