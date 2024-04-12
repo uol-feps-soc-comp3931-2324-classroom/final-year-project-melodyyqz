@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate"
+		},
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/8abe50c325ec40d78a9545220e422ee8/glfw-populate.rule"
+		},
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/bebb90f9dad1bd51e26edb3404b42fa4/glfw-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"glfw-populate"
+		],
+		"name" : "glfw-populate"
+	}
+}

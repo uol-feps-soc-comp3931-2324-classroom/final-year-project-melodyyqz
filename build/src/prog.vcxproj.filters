@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VBO.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\empty_source.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\shader_class.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\simple_mesh.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\empty.cpp">
+      <Filter>util\vmlib</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\mat44.cpp">
+      <Filter>util\vmlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\glad.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.hpp" />
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.hpp" />
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VBO.hpp" />
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\empty_header.hpp" />
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\shader_class.hpp" />
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\simple_mesh.hpp" />
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\mat22.hpp">
+      <Filter>util\vmlib</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\mat33.hpp">
+      <Filter>util\vmlib</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\mat44.hpp">
+      <Filter>util\vmlib</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\vec2.hpp">
+      <Filter>util\vmlib</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\vec3.hpp">
+      <Filter>util\vmlib</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\vec4.hpp">
+      <Filter>util\vmlib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="C:\Users\melod\Documents\final-year-project-melodyyqz\thirdparty\rapidobj\rapidobj.natvis" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="util">
+      <UniqueIdentifier>{3594214D-6397-31F8-9BE8-8CCA26985D4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\vmlib">
+      <UniqueIdentifier>{2D8E87EC-6D74-3D2E-B58B-928924FD0B20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets">
+      <UniqueIdentifier>{1f862fa6-3034-414c-83ad-e680fda34996}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\assets\Armadillo.mtl">
+      <Filter>assets</Filter>
+    </None>
+    <None Include="default.frag">
+      <Filter>assets</Filter>
+    </None>
+    <None Include="default.vert">
+      <Filter>assets</Filter>
+    </None>
+  </ItemGroup>
+</Project>

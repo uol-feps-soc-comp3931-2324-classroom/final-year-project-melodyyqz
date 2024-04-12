@@ -20,6 +20,7 @@ struct SimpleMeshData
 	std::vector<Vec3f> colors;
 	std::vector<Vec3f> normals;
 	std::vector<Vec2f> texcoords;
+	std::vector<GLuint> indices;
 };
 
 SimpleMeshData load_wavefront_obj(char const* aPath);

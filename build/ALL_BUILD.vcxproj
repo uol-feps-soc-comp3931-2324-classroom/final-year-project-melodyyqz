@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveNugetPackages>false</ResolveNugetPackages>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C8B93B63-5ABA-3D21-9BC4-0E1C147BDD2C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\melod\Documents\final-year-project-melodyyqz\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/melod/Documents/final-year-project-melodyyqz/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/melod/Documents/final-year-project-melodyyqz -BC:/Users/melod/Documents/final-year-project-melodyyqz/build --check-stamp-file C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\3.29.0-rc1\CMakeCXXCompiler.cmake;C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\3.29.0-rc1\CMakeRCCompiler.cmake;C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\3.29.0-rc1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/melod/Documents/final-year-project-melodyyqz/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/melod/Documents/final-year-project-melodyyqz -BC:/Users/melod/Documents/final-year-project-melodyyqz/build --check-stamp-file C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\3.29.0-rc1\CMakeCXXCompiler.cmake;C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\3.29.0-rc1\CMakeRCCompiler.cmake;C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\3.29.0-rc1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/melod/Documents/final-year-project-melodyyqz/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/melod/Documents/final-year-project-melodyyqz -BC:/Users/melod/Documents/final-year-project-melodyyqz/build --check-stamp-file C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake;C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\3.29.0-rc1\CMakeCXXCompiler.cmake;C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\3.29.0-rc1\CMakeRCCompiler.cmake;C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\3.29.0-rc1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\melod\Documents\final-year-project-melodyyqz\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\ZERO_CHECK.vcxproj">
+      <Project>{0AD7D51D-418C-3ACC-9563-7B8F6CBC357C}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\verify\c99_compile_test.vcxproj">
+      <Project>{8861C2FA-A919-3505-9AF0-E3EB2F5EFBAA}</Project>
+      <Name>c99_compile_test</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\kernels\embree.vcxproj">
+      <Project>{9792DD15-E76E-3BB2-A220-6EA9628DD9AB}</Project>
+      <Name>embree</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\kernels\embree_avx.vcxproj">
+      <Project>{4533D7B1-3FC2-34FB-ADF3-C37E4934C0EC}</Project>
+      <Name>embree_avx</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\kernels\embree_avx2.vcxproj">
+      <Project>{EA835412-BF68-362C-8DED-76448B0B0275}</Project>
+      <Name>embree_avx2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\common\tutorial\embree_benchmark.vcxproj">
+      <Project>{86EA51AB-A214-3697-BF9D-42AFCF90A164}</Project>
+      <Name>embree_benchmark</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\buildbench\embree_buildbench.vcxproj">
+      <Project>{0D0225D7-E9B5-3CBA-8883-A319B9F3FAC9}</Project>
+      <Name>embree_buildbench</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\bvh_access\embree_bvh_access.vcxproj">
+      <Project>{98607828-56F6-309D-94C8-08113AA97841}</Project>
+      <Name>embree_bvh_access</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\bvh_builder\embree_bvh_builder.vcxproj">
+      <Project>{9FC3C1E6-7CD9-3299-9AAC-C2A12EA3D9EB}</Project>
+      <Name>embree_bvh_builder</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\closest_point\embree_closest_point.vcxproj">
+      <Project>{B4C715BE-2AF2-3040-B1B7-EE63DDBC81DC}</Project>
+      <Name>embree_closest_point</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\collide\embree_collide.vcxproj">
+      <Project>{68378531-EEC2-322F-BB38-6182C3754783}</Project>
+      <Name>embree_collide</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\convert\embree_convert.vcxproj">
+      <Project>{E25E1325-3F6F-339F-A3F5-D77CDCD8DD0E}</Project>
+      <Name>embree_convert</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\curve_geometry\embree_curve_geometry.vcxproj">
+      <Project>{92CBDFFA-81E4-3EDF-B28F-BF065217E9D4}</Project>
+      <Name>embree_curve_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\displacement_geometry\embree_displacement_geometry.vcxproj">
+      <Project>{10EB84B1-39C4-37C8-AF7D-2E2806DD508A}</Project>
+      <Name>embree_displacement_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\dynamic_scene\embree_dynamic_scene.vcxproj">
+      <Project>{9D561385-19AF-3323-98F5-87834F86E9CC}</Project>
+      <Name>embree_dynamic_scene</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\forest\embree_forest.vcxproj">
+      <Project>{1623E0B4-757D-3448-97DC-90B7B73464A6}</Project>
+      <Name>embree_forest</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\grid_geometry\embree_grid_geometry.vcxproj">
+      <Project>{1E946A29-34F7-3156-8ACB-504BE7070B8B}</Project>
+      <Name>embree_grid_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\hair_geometry\embree_hair_geometry.vcxproj">
+      <Project>{9E7F7470-2C9B-3E58-BF45-70981670D773}</Project>
+      <Name>embree_hair_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\embree_info\embree_info.vcxproj">
+      <Project>{A375CEB5-27CE-33EC-9284-10D98CABA2A9}</Project>
+      <Name>embree_info</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\instanced_geometry\embree_instanced_geometry.vcxproj">
+      <Project>{F62DA8DA-C64F-36F3-8945-BFBF28461087}</Project>
+      <Name>embree_instanced_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\interpolation\embree_interpolation.vcxproj">
+      <Project>{1EFCD605-1CB7-323D-A38D-F19ED0353823}</Project>
+      <Name>embree_interpolation</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\intersection_filter\embree_intersection_filter.vcxproj">
+      <Project>{1C105308-24DC-3563-A6D8-460906ADC33A}</Project>
+      <Name>embree_intersection_filter</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\lazy_geometry\embree_lazy_geometry.vcxproj">
+      <Project>{DA583423-5FCA-3B14-8EC1-D770EE00E9B7}</Project>
+      <Name>embree_lazy_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\minimal\embree_minimal.vcxproj">
+      <Project>{CD73271E-AAE4-3814-8D5D-4FF42E0D9075}</Project>
+      <Name>embree_minimal</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\motion_blur_geometry\embree_motion_blur_geometry.vcxproj">
+      <Project>{82655886-0AC1-3411-B671-A2F834D698CA}</Project>
+      <Name>embree_motion_blur_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\multiscene_geometry\embree_multiscene_geometry.vcxproj">
+      <Project>{82FA9089-1A5F-31B8-B7E6-86D2F8BF41C6}</Project>
+      <Name>embree_multiscene_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\next_hit\embree_next_hit.vcxproj">
+      <Project>{8A70A6A7-B992-3F4C-AD20-954A991E4F44}</Project>
+      <Name>embree_next_hit</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\pathtracer\embree_pathtracer.vcxproj">
+      <Project>{D14E337B-474C-325B-8674-4248A0C9CA1E}</Project>
+      <Name>embree_pathtracer</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\point_geometry\embree_point_geometry.vcxproj">
+      <Project>{846785E2-8D04-3877-A346-A7912F88E6B4}</Project>
+      <Name>embree_point_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\quaternion_motion_blur\embree_quaternion_motion_blur.vcxproj">
+      <Project>{2437A08D-BA32-3085-92A9-3225D80346A8}</Project>
+      <Name>embree_quaternion_motion_blur</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\ray_mask\embree_ray_mask.vcxproj">
+      <Project>{53B4F6F7-98CD-39E5-AE39-C50C8CD1A659}</Project>
+      <Name>embree_ray_mask</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\kernels\embree_sse42.vcxproj">
+      <Project>{6CCFCFEF-6C4F-306A-A540-20AE2142408B}</Project>
+      <Name>embree_sse42</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\subdivision_geometry\embree_subdivision_geometry.vcxproj">
+      <Project>{C82C1B3D-103B-3F80-90DC-D1B0C08FCC64}</Project>
+      <Name>embree_subdivision_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\embree_tests\embree_tests.vcxproj">
+      <Project>{D14DAC0C-8522-33E4-B27F-E52D5749719D}</Project>
+      <Name>embree_tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\triangle_geometry\embree_triangle_geometry.vcxproj">
+      <Project>{F3C2A64F-4DAA-3BD7-9F11-0F97C99E25A8}</Project>
+      <Name>embree_triangle_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\user_geometry\embree_user_geometry.vcxproj">
+      <Project>{E969E670-9256-3435-A21B-6F11349EBBC3}</Project>
+      <Name>embree_user_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\verify\embree_verify.vcxproj">
+      <Project>{5E64DC70-0559-3455-BAF3-D5117F40C36E}</Project>
+      <Name>embree_verify</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\viewer\embree_viewer.vcxproj">
+      <Project>{7836D495-8504-3285-BE03-9053309A7CC5}</Project>
+      <Name>embree_viewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\voronoi\embree_voronoi.vcxproj">
+      <Project>{7ACA249C-FAC3-33DA-913C-DDCE91C03199}</Project>
+      <Name>embree_voronoi</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\common\image\image.vcxproj">
+      <Project>{65B6F4FA-13EA-30AE-BB82-4D3792E3ECC0}</Project>
+      <Name>image</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\common\imgui\imgui.vcxproj">
+      <Project>{AD94CF0C-8AE1-31DD-BB39-FF2833FCA687}</Project>
+      <Name>imgui</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\common\lexers\lexers.vcxproj">
+      <Project>{171A6510-135D-3B2F-AE62-EEC6DD3F70CC}</Project>
+      <Name>lexers</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\common\lights\lights.vcxproj">
+      <Project>{465B260B-6EF4-3081-9A6A-23BA480A8F94}</Project>
+      <Name>lights</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\common\math\math.vcxproj">
+      <Project>{593907AE-5592-3778-B136-FB45966363AB}</Project>
+      <Name>math</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\common\tutorial\noise.vcxproj">
+      <Project>{EC434006-C894-378C-ACD9-B1D401F7EFB8}</Project>
+      <Name>noise</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\src\prog.vcxproj">
+      <Project>{2D8D18A1-F94B-3D8C-ADD8-62A2E8459BF3}</Project>
+      <Name>prog</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\common\scenegraph\scenegraph.vcxproj">
+      <Project>{7DC51A51-A92C-32F0-8176-8DE5ED8604F0}</Project>
+      <Name>scenegraph</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\common\simd\simd.vcxproj">
+      <Project>{FF3DFF02-D8EB-37ED-8C4D-C183DE55D309}</Project>
+      <Name>simd</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\common\sys\sys.vcxproj">
+      <Project>{071AFAD2-3244-362A-9C42-038FDAFDD1F2}</Project>
+      <Name>sys</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\common\tasking\tasking.vcxproj">
+      <Project>{8984ED81-0B09-3AFA-9D15-A22F0E18964B}</Project>
+      <Name>tasking</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\common\texture\texture.vcxproj">
+      <Project>{5C021BFE-63C2-3303-9D04-E15874790E2F}</Project>
+      <Name>texture</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\melod\Documents\final-year-project-melodyyqz\build\thirdparty\embree\tutorials\common\tutorial\tutorial.vcxproj">
+      <Project>{755B3F9B-8BC8-3A48-B88C-D3764D656C84}</Project>
+      <Name>tutorial</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

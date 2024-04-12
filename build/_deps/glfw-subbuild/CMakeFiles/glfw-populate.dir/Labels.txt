@@ -1,0 +1,14 @@
+# Target labels
+ glfw-populate
+# Source files and their labels
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/8abe50c325ec40d78a9545220e422ee8/glfw-populate.rule
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/bebb90f9dad1bd51e26edb3404b42fa4/glfw-populate-complete.rule
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-build.rule
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-configure.rule
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-download.rule
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-install.rule
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-mkdir.rule
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-patch.rule
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-test.rule
+C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-subbuild/CMakeFiles/4a1e064ddbe62e265252663b77342b91/glfw-populate-update.rule

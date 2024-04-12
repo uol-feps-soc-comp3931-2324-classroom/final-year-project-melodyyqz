@@ -1,1 +1,3 @@
-build/
+build/x64/*
+build/thirdparty/*
+build/.vs/*
