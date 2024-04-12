@@ -55,7 +55,7 @@ int main() {
     VAO1.Bind();
 
     // Load object
-    SimpleMeshData armadilloMeshData = load_wavefront_obj("sphere.obj");
+    SimpleMeshData armadilloMeshData = load_wavefront_obj("Armadillo.obj");
 
 
     // Create a contiguous array of GLfloat for positions

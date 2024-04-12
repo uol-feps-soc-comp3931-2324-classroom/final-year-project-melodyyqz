@@ -7,67 +7,51 @@
 #include <stb_image.h>
 #include "../thirdparty/embree/include/embree4/rtcore.h"
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
+SimpleMeshData load_wavefront_obj(char const* aPath) {
+    auto result = rapidobj::ParseFile(aPath);
+    if (result.error) {
+        std::cout << result.error.code.message() << '\n';
+        // Handle the error appropriately
+        // For example, return an empty SimpleMeshData object or throw an exception
+    }
 
-SimpleMeshData load_wavefront_obj(char const* aPath)
-{
-	auto result = rapidobj::ParseFile(aPath);
-	if (result.error)
-	{
-		std::cout << result.error.code.message() << '\n';
-		// do some kind of return here
-	}
-	rapidobj::Triangulate(result);
-	SimpleMeshData ret;
+    rapidobj::Triangulate(result);
+    SimpleMeshData ret;
 
-	auto num_triangles = size_t();
+    std::unordered_map<int, int> positionIndexMapping; // Maps original position indices to sequential indices
+    std::vector<Vec3f> sequentialPositions; // Stores vertex positions in the order they're encountered
 
-	for (const auto& shape : result.shapes) {
-		num_triangles += shape.mesh.num_face_vertices.size();
-	}
+    for (const auto& shape : result.shapes) {
+        for (const auto& idx : shape.mesh.indices) {
+            // Process position index
+            if (positionIndexMapping.find(idx.position_index) == positionIndexMapping.end()) {
+                // This index hasn't been seen before; add it to the mapping
+                int newSequentialIndex = sequentialPositions.size();
+                positionIndexMapping[idx.position_index] = newSequentialIndex;
 
-	std::cout << "Shapes:    " << result.shapes.size() << '\n';
-	std::cout << "Triangles: " << num_triangles << '\n';
-	std::cout << "Normals:   " << result.attributes.normals.size() / 3 << '\n' << std::endl;
+                // Add the corresponding vertex position to sequentialPositions
+                sequentialPositions.emplace_back(Vec3f{
+                    result.attributes.positions[idx.position_index * 3 + 0],
+                    result.attributes.positions[idx.position_index * 3 + 1],
+                    result.attributes.positions[idx.position_index * 3 + 2]
+                    });
+            }
 
-	// Initialize normals to zero
-	std::vector<Vec3f> normals(result.attributes.positions.size(), Vec3f{ 0.0f, 0.0f, 0.0f });
-	
-	for (auto const& shape : result.shapes) {
-		for (std::size_t i = 0; i < shape.mesh.indices.size(); ++i)
-		{
-			auto const& idx = shape.mesh.indices[i];
+            // Use the new sequential index for this vertex in the indices vector
+            ret.indices.push_back(positionIndexMapping[idx.position_index]);
+        }
+    }
 
-			// store vertex indices
-			ret.indices.push_back((GLuint)(idx.position_index));
-			//printf("index: %d\n", idx.position_index);
+    // After processing all indices, ret.positions should contain the reindexed positions
+    ret.positions = sequentialPositions;
 
-			ret.positions.emplace_back(Vec3f{
-				result.attributes.positions[i * 3 + 0],
-				result.attributes.positions[i * 3 + 1],
-				result.attributes.positions[i * 3 + 2]
-				});
+    // Continue to process normals and any other attributes similarly, if necessary
 
-			// load normals (adjust to be 0-based)
-			ret.normals.emplace_back(Vec3f{
-				result.attributes.normals[(idx.normal_index) * 3 + 0],
-				result.attributes.normals[(idx.normal_index) * 3 + 1],
-				result.attributes.normals[(idx.normal_index) * 3 + 2]
-				});
-
-			//load texcoords
-			/*ret.texcoords.emplace_back(Vec2f{
-				result.attributes.texcoords[idx.texcoord_index * 2 + 0],
-				result.attributes.texcoords[idx.texcoord_index * 2 + 1]
-				});*/
-
-			// load indices
-			//ret.indices.push_back(ret.indices.size() - 1);
-		}
-	}
-	printf("read in %d indices\n", ret.indices.size());
-	printf("read in %d positions\n", ret.positions.size());
-	return ret;
+    std::cout << "Processed " << ret.indices.size() << " indices and " << ret.positions.size() << " positions.\n";
+    return ret;
 }
 
 SimpleMeshData concatenate(SimpleMeshData aM, SimpleMeshData const& aN)
