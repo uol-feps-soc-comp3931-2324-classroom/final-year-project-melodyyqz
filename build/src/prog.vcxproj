@@ -258,6 +258,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Camera.cpp" />
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.cpp" />
@@ -268,6 +269,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\simple_mesh.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\empty.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\mat44.cpp" />
+    <ClInclude Include="..\..\src\Camera.h" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.hpp" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.hpp" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VBO.hpp" />
@@ -296,7 +298,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\assets\Armadillo.mtl" />
+    <None Include="Armadillo.mtl" />
     <None Include="default.frag" />
     <None Include="default.vert" />
   </ItemGroup>

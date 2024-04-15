@@ -16,7 +16,12 @@
 #include "shader_class.hpp"
 #include "VAO.hpp"
 #include "VBO.hpp"
-#include "EBO.hpp" 
+#include "EBO.hpp"
+#include "Camera.h"
+
+const unsigned int width = 800;
+const unsigned int height = 800;
+
 
 // Mock object
 GLfloat vertices[] = {
@@ -37,7 +42,7 @@ int main() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
     // Create window
-    GLFWwindow* window = glfwCreateWindow(800, 800, "Caustics", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(width, height, "Caustics", NULL, NULL);
     if (window == NULL) {
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
@@ -47,7 +52,7 @@ int main() {
 
     // Load GLAD
     gladLoadGL();
-    glViewport(0, 0, 800, 800);
+    glViewport(0, 0, width, height);
 
     // Create shader program
     Shader shaderProgram("default.vert", "default.frag");
@@ -81,6 +86,8 @@ int main() {
 
     glDisable(GL_CULL_FACE);
 
+    Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
+
     // Don't close window instantly
     while (!glfwWindowShouldClose(window)) {
         // Background colour
@@ -88,23 +95,26 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
         shaderProgram.Activate();
 
+        camera.Inputs(window);
+        camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
+
         // BEGIN OF 3d STUFF HERE ------------------------------------------------
 
         // Initialise 3d view matrices
-        glm::mat4 model = glm::mat4(1.0f);
-        glm::mat4 view = glm::mat4(1.0f);
-        glm::mat4 proj = glm::mat4(1.0f);
+        //glm::mat4 model = glm::mat4(1.0f);
+        //glm::mat4 view = glm::mat4(1.0f);
+        //glm::mat4 proj = glm::mat4(1.0f);
         // Move camera back
-        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -10.0f));
-        proj = glm::perspective(glm::radians(45.0f), 800.0f / 800.0f, 0.1f, 100.0f);
+        //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -10.0f));
+        //proj = glm::perspective(glm::radians(45.0f), 800.0f / 800.0f, 0.1f, 100.0f);
 
         // Get matrix's uniform location and set matrix
-        unsigned int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        unsigned int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        unsigned int projLoc = glGetUniformLocation(shaderProgram.ID, "proj");
-        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
+        //unsigned int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
+        //glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        //unsigned int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
+        //glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        //unsigned int projLoc = glGetUniformLocation(shaderProgram.ID, "proj");
+        //glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
 
 
         VAO1.Bind();
