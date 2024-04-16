@@ -18,6 +18,7 @@
 #include "VBO.hpp"
 #include "EBO.hpp"
 #include "Camera.h"
+#include "embree_manager.h"
 
 const unsigned int width = 800;
 const unsigned int height = 800;

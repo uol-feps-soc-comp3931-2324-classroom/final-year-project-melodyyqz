@@ -70,8 +70,8 @@
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\melod\Documents\final-year-project-melodyyqz\build\libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\melod\Documents\final-year-project-melodyyqz\build\libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\melod\Documents\final-year-project-melodyyqz\build\libraries\include;C:\Users\melod\Documents\embree\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\melod\Documents\final-year-project-melodyyqz\build\libraries\lib;C:\Users\melod\Documents\embree\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -259,6 +259,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Camera.cpp" />
+    <ClCompile Include="..\..\src\embree_manager.cpp" />
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.cpp" />
@@ -270,6 +271,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\empty.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\mat44.cpp" />
     <ClInclude Include="..\..\src\Camera.h" />
+    <ClInclude Include="..\..\src\embree_manager.h" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.hpp" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.hpp" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VBO.hpp" />

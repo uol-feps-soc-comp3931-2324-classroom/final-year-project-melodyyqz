@@ -1,4 +1,3 @@
-﻿  Camera.cpp
-  main.cpp
-  Generating Code...
+﻿  embree_manager.cpp
+  glad.c
   prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe
