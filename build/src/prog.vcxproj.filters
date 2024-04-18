@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\Camera.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VBO.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\embree_manager.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\empty_source.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\photon_emitter.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\shader_class.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\simple_mesh.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\empty.cpp">
@@ -14,9 +17,7 @@
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\mat44.cpp">
       <Filter>util\vmlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\glad.c" />
-    <ClCompile Include="..\..\src\Camera.cpp" />
-    <ClCompile Include="..\..\src\embree_manager.cpp" />
+    <ClCompile Include="..\..\src\glad.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.hpp" />
@@ -43,8 +44,6 @@
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\vec4.hpp">
       <Filter>util\vmlib</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Camera.h" />
-    <ClInclude Include="..\..\src\embree_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\CMakeLists.txt" />
@@ -59,19 +58,5 @@
     <Filter Include="util\vmlib">
       <UniqueIdentifier>{2D8E87EC-6D74-3D2E-B58B-928924FD0B20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="assets">
-      <UniqueIdentifier>{1f862fa6-3034-414c-83ad-e680fda34996}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="default.frag">
-      <Filter>assets</Filter>
-    </None>
-    <None Include="default.vert">
-      <Filter>assets</Filter>
-    </None>
-    <None Include="Armadillo.mtl">
-      <Filter>assets</Filter>
-    </None>
   </ItemGroup>
 </Project>

@@ -23,25 +23,16 @@
 const unsigned int width = 800;
 const unsigned int height = 800;
 
-
-// Mock object
-GLfloat vertices[] = {
-    -0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // lower left
-    0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // lower right
-    0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // upper
-    -0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // inner lower left
-    0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // inner lower right
-    0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f // inner down
-};
-
-//
-
 int main() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
+    // Initialize Embree
+    EmbreeManager embreeManager;
+    embreeManager.initialize();
+
     // Create window
     GLFWwindow* window = glfwCreateWindow(width, height, "Caustics", NULL, NULL);
     if (window == NULL) {
@@ -63,7 +54,6 @@ int main() {
     // Load object
     SimpleMeshData armadilloMeshData = load_wavefront_obj("Armadillo.obj");
 
-
     // Create a contiguous array of GLfloat for positions
     std::vector<GLfloat> positionData;
     positionData.reserve(armadilloMeshData.positions.size() * 3);
@@ -73,9 +63,6 @@ int main() {
         positionData.push_back(pos.z);
     }
 
-
-
-
     // Create VBO and EBO with the arrays
     VBO VBO1(&positionData[0], sizeof(GLfloat) * positionData.size());
     EBO EBO1(&armadilloMeshData.indices[0], sizeof(GLuint) * armadilloMeshData.indices.size());
@@ -83,7 +70,6 @@ int main() {
     VAO1.Unbind();
     VBO1.Unbind();
     EBO1.Unbind();
-
 
     glDisable(GL_CULL_FACE);
 
@@ -98,25 +84,6 @@ int main() {
 
         camera.Inputs(window);
         camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
-
-        // BEGIN OF 3d STUFF HERE ------------------------------------------------
-
-        // Initialise 3d view matrices
-        //glm::mat4 model = glm::mat4(1.0f);
-        //glm::mat4 view = glm::mat4(1.0f);
-        //glm::mat4 proj = glm::mat4(1.0f);
-        // Move camera back
-        //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -10.0f));
-        //proj = glm::perspective(glm::radians(45.0f), 800.0f / 800.0f, 0.1f, 100.0f);
-
-        // Get matrix's uniform location and set matrix
-        //unsigned int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-        //glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        //unsigned int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
-        //glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        //unsigned int projLoc = glGetUniformLocation(shaderProgram.ID, "proj");
-        //glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
-
 
         VAO1.Bind();
         glDrawElements(GL_TRIANGLES, armadilloMeshData.indices.size(), GL_UNSIGNED_INT, 0);
@@ -147,11 +114,12 @@ int main() {
     rtcReleaseScene(scene);
     rtcReleaseDevice(device);*/
 
-    // Delete objects created
+    // Cleanup
     VAO1.Delete();
     VBO1.Delete();
     EBO1.Delete();
     shaderProgram.Delete();
+    embreeManager.release();
     // Cleanup window
     glfwDestroyWindow(window);
     glfwTerminate();

@@ -70,12 +70,12 @@
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\melod\Documents\final-year-project-melodyyqz\build\libraries\include;C:\Users\melod\Documents\embree\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\melod\Documents\final-year-project-melodyyqz\build\libraries\lib;C:\Users\melod\Documents\embree\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\melod\Documents\final-year-project-melodyyqz\build\libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\melod\Documents\final-year-project-melodyyqz\build\libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\melod\Documents\final-year-project-melodyyqz\src;C:\Users\melod\Documents\final-year-project-melodyyqz\thirdparty\embree\kernels\..\include;C:\Users\melod\Documents\final-year-project-melodyyqz\thirdparty\stb\.;C:\Program Files %28x86%29\Intel\oneAPI\tbb\2021.11\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\melod\Documents\final-year-project-melodyyqz\src;C:\Users\melod\Documents\final-year-project-melodyyqz\thirdparty\embree\kernels\..\include;C:\Users\melod\Documents\final-year-project-melodyyqz\thirdparty\stb\.;C:\Program Files %28x86%29\Intel\oneAPI\tbb\2021.11\include;C:\Users\melod\Documents\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/rapidobj/include"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -107,7 +107,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>..\thirdparty\embree\Debug\embree4.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;glfw3.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>..\thirdparty\embree\Debug\embree4.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;opengl32.lib;glfw3.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -258,20 +258,19 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Camera.cpp" />
-    <ClCompile Include="..\..\src\embree_manager.cpp" />
-    <ClCompile Include="..\glad.c" />
+    <ClCompile Include="..\..\src\glad.c" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\Camera.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VBO.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\embree_manager.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\empty_source.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp" />
+    <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\photon_emitter.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\shader_class.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\simple_mesh.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\empty.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\mat44.cpp" />
-    <ClInclude Include="..\..\src\Camera.h" />
-    <ClInclude Include="..\..\src\embree_manager.h" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.hpp" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.hpp" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VBO.hpp" />
@@ -298,11 +297,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{9792DD15-E76E-3BB2-A220-6EA9628DD9AB}</Project>
       <Name>embree</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Armadillo.mtl" />
-    <None Include="default.frag" />
-    <None Include="default.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

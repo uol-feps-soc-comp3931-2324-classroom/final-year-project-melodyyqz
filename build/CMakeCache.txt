@@ -509,13 +509,13 @@ USE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=ON
 _tbb_debug_dll:FILEPATH=C:/Program Files (x86)/Intel/oneAPI/tbb/latest/bin/tbb12_debug.dll
 
 //Path to a library.
-_tbb_debug_lib:FILEPATH=C:/Program Files (x86)/Intel/oneAPI/tbb/2021.11/lib/tbb12_debug.lib
+_tbb_debug_lib:FILEPATH=C:/Program Files (x86)/Intel/oneAPI/tbb/latest/lib/tbb12_debug.lib
 
 //Path to a file.
 _tbb_release_dll:FILEPATH=C:/Program Files (x86)/Intel/oneAPI/tbb/latest/bin/tbb12.dll
 
 //Path to a library.
-_tbb_release_lib:FILEPATH=C:/Program Files (x86)/Intel/oneAPI/tbb/2021.11/lib/tbb12.lib
+_tbb_release_lib:FILEPATH=C:/Program Files (x86)/Intel/oneAPI/tbb/latest/lib/tbb12.lib
 
 //Value Computed by CMake
 embree4_BINARY_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/build/thirdparty/embree

@@ -6299,3 +6299,311 @@ events:
         
       exitCode: 0
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "thirdparty/embree/CMakeLists.txt:398 (TRY_COMPILE)"
+    directories:
+      source: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+      binary: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/embree/common/cmake"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_AVX"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_0ec8a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.8.5+b5265ef37 for .NET Framework
+        Build started 17/04/2024 18:17:58.
+        
+        Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_0ec8a.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_0ec8a.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\".
+          Creating directory "cmTC_0ec8a.dir\\Debug\\cmTC_0ec8a.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_0ec8a.dir\\Debug\\cmTC_0ec8a.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_0ec8a.dir\\Debug\\cmTC_0ec8a.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D __SSE__ /D __SSE2__ /D __SSE3__ /D __SSSE3__ /D __SSE4_1__ /D __SSE4_2__ /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /arch:AVX /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0ec8a.dir\\Debug\\\\" /Fd"cmTC_0ec8a.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33135 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D __SSE__ /D __SSE2__ /D __SSE3__ /D __SSSE3__ /D __SSE4_1__ /D __SSE4_2__ /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /arch:AVX /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0ec8a.dir\\Debug\\\\" /Fd"cmTC_0ec8a.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          check_isa.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_0ec8a.exe" /INCREMENTAL /ILK:"cmTC_0ec8a.dir\\Debug\\cmTC_0ec8a.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_0ec8a.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_0ec8a.lib" /MACHINE:X64  /machine:x64 cmTC_0ec8a.dir\\Debug\\check_isa.obj
+          cmTC_0ec8a.vcxproj -> C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_0ec8a.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_0ec8a.dir\\Debug\\cmTC_0ec8a.tlog\\unsuccessfulbuild".
+          Touching "cmTC_0ec8a.dir\\Debug\\cmTC_0ec8a.tlog\\cmTC_0ec8a.lastbuildstate".
+        Done Building Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_0ec8a.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.57
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "thirdparty/embree/CMakeLists.txt:399 (TRY_COMPILE)"
+    directories:
+      source: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+      binary: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/embree/common/cmake"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_AVX2"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_65235.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.8.5+b5265ef37 for .NET Framework
+        Build started 17/04/2024 18:17:59.
+        
+        Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_65235.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_65235.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\".
+          Creating directory "cmTC_65235.dir\\Debug\\cmTC_65235.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_65235.dir\\Debug\\cmTC_65235.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_65235.dir\\Debug\\cmTC_65235.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D __SSE__ /D __SSE2__ /D __SSE3__ /D __SSSE3__ /D __SSE4_1__ /D __SSE4_2__ /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /arch:AVX2 /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_65235.dir\\Debug\\\\" /Fd"cmTC_65235.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33135 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D __SSE__ /D __SSE2__ /D __SSE3__ /D __SSSE3__ /D __SSE4_1__ /D __SSE4_2__ /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /arch:AVX2 /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_65235.dir\\Debug\\\\" /Fd"cmTC_65235.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          check_isa.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_65235.exe" /INCREMENTAL /ILK:"cmTC_65235.dir\\Debug\\cmTC_65235.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_65235.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_65235.lib" /MACHINE:X64  /machine:x64 cmTC_65235.dir\\Debug\\check_isa.obj
+          cmTC_65235.vcxproj -> C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_65235.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_65235.dir\\Debug\\cmTC_65235.tlog\\unsuccessfulbuild".
+          Touching "cmTC_65235.dir\\Debug\\cmTC_65235.tlog\\cmTC_65235.lastbuildstate".
+        Done Building Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_65235.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.46
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "thirdparty/embree/CMakeLists.txt:400 (TRY_COMPILE)"
+    directories:
+      source: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+      binary: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/embree/common/cmake"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_AVX512"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_aa3bb.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.8.5+b5265ef37 for .NET Framework
+        Build started 17/04/2024 18:18:00.
+        
+        Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_aa3bb.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_aa3bb.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\".
+          Creating directory "cmTC_aa3bb.dir\\Debug\\cmTC_aa3bb.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_aa3bb.dir\\Debug\\cmTC_aa3bb.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_aa3bb.dir\\Debug\\cmTC_aa3bb.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_aa3bb.dir\\Debug\\\\" /Fd"cmTC_aa3bb.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33135 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_aa3bb.dir\\Debug\\\\" /Fd"cmTC_aa3bb.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          check_isa.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_aa3bb.exe" /INCREMENTAL /ILK:"cmTC_aa3bb.dir\\Debug\\cmTC_aa3bb.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_aa3bb.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_aa3bb.lib" /MACHINE:X64  /machine:x64 cmTC_aa3bb.dir\\Debug\\check_isa.obj
+          cmTC_aa3bb.vcxproj -> C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_aa3bb.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_aa3bb.dir\\Debug\\cmTC_aa3bb.tlog\\unsuccessfulbuild".
+          Touching "cmTC_aa3bb.dir\\Debug\\cmTC_aa3bb.tlog\\cmTC_aa3bb.lastbuildstate".
+        Done Building Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_aa3bb.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.45
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "thirdparty/embree/CMakeLists.txt:398 (TRY_COMPILE)"
+    directories:
+      source: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+      binary: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/embree/common/cmake"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_AVX"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_0c621.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.8.5+b5265ef37 for .NET Framework
+        Build started 17/04/2024 18:21:40.
+        
+        Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_0c621.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_0c621.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\".
+          Creating directory "cmTC_0c621.dir\\Debug\\cmTC_0c621.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_0c621.dir\\Debug\\cmTC_0c621.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_0c621.dir\\Debug\\cmTC_0c621.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D __SSE__ /D __SSE2__ /D __SSE3__ /D __SSSE3__ /D __SSE4_1__ /D __SSE4_2__ /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /arch:AVX /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0c621.dir\\Debug\\\\" /Fd"cmTC_0c621.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33135 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D __SSE__ /D __SSE2__ /D __SSE3__ /D __SSSE3__ /D __SSE4_1__ /D __SSE4_2__ /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /arch:AVX /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0c621.dir\\Debug\\\\" /Fd"cmTC_0c621.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          check_isa.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_0c621.exe" /INCREMENTAL /ILK:"cmTC_0c621.dir\\Debug\\cmTC_0c621.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_0c621.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_0c621.lib" /MACHINE:X64  /machine:x64 cmTC_0c621.dir\\Debug\\check_isa.obj
+          cmTC_0c621.vcxproj -> C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_0c621.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_0c621.dir\\Debug\\cmTC_0c621.tlog\\unsuccessfulbuild".
+          Touching "cmTC_0c621.dir\\Debug\\cmTC_0c621.tlog\\cmTC_0c621.lastbuildstate".
+        Done Building Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_0c621.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.47
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "thirdparty/embree/CMakeLists.txt:399 (TRY_COMPILE)"
+    directories:
+      source: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+      binary: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/embree/common/cmake"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_AVX2"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_5e37b.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.8.5+b5265ef37 for .NET Framework
+        Build started 17/04/2024 18:21:40.
+        
+        Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_5e37b.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_5e37b.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\".
+          Creating directory "cmTC_5e37b.dir\\Debug\\cmTC_5e37b.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_5e37b.dir\\Debug\\cmTC_5e37b.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_5e37b.dir\\Debug\\cmTC_5e37b.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D __SSE__ /D __SSE2__ /D __SSE3__ /D __SSSE3__ /D __SSE4_1__ /D __SSE4_2__ /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /arch:AVX2 /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_5e37b.dir\\Debug\\\\" /Fd"cmTC_5e37b.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33135 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D __SSE__ /D __SSE2__ /D __SSE3__ /D __SSSE3__ /D __SSE4_1__ /D __SSE4_2__ /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /arch:AVX2 /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_5e37b.dir\\Debug\\\\" /Fd"cmTC_5e37b.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          check_isa.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_5e37b.exe" /INCREMENTAL /ILK:"cmTC_5e37b.dir\\Debug\\cmTC_5e37b.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_5e37b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_5e37b.lib" /MACHINE:X64  /machine:x64 cmTC_5e37b.dir\\Debug\\check_isa.obj
+          cmTC_5e37b.vcxproj -> C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_5e37b.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_5e37b.dir\\Debug\\cmTC_5e37b.tlog\\unsuccessfulbuild".
+          Touching "cmTC_5e37b.dir\\Debug\\cmTC_5e37b.tlog\\cmTC_5e37b.lastbuildstate".
+        Done Building Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_5e37b.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.47
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "thirdparty/embree/CMakeLists.txt:400 (TRY_COMPILE)"
+    directories:
+      source: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+      binary: "C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/embree/common/cmake"
+    buildResult:
+      variable: "COMPILER_SUPPORTS_AVX512"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_25eb8.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.8.5+b5265ef37 for .NET Framework
+        Build started 17/04/2024 18:21:41.
+        
+        Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_25eb8.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_25eb8.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\".
+          Creating directory "cmTC_25eb8.dir\\Debug\\cmTC_25eb8.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_25eb8.dir\\Debug\\cmTC_25eb8.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_25eb8.dir\\Debug\\cmTC_25eb8.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_25eb8.dir\\Debug\\\\" /Fd"cmTC_25eb8.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33135 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_25eb8.dir\\Debug\\\\" /Fd"cmTC_25eb8.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\thirdparty\\embree\\common\\cmake\\check_isa.cpp"
+          check_isa.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_25eb8.exe" /INCREMENTAL /ILK:"cmTC_25eb8.dir\\Debug\\cmTC_25eb8.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_25eb8.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/melod/Documents/final-year-project-melodyyqz/build/CMakeFiles/CMakeTmp/Debug/cmTC_25eb8.lib" /MACHINE:X64  /machine:x64 cmTC_25eb8.dir\\Debug\\check_isa.obj
+          cmTC_25eb8.vcxproj -> C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\Debug\\cmTC_25eb8.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_25eb8.dir\\Debug\\cmTC_25eb8.tlog\\unsuccessfulbuild".
+          Touching "cmTC_25eb8.dir\\Debug\\cmTC_25eb8.tlog\\cmTC_25eb8.lastbuildstate".
+        Done Building Project "C:\\Users\\melod\\Documents\\final-year-project-melodyyqz\\build\\CMakeFiles\\CMakeTmp\\cmTC_25eb8.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.48
+        
+      exitCode: 0
+...
