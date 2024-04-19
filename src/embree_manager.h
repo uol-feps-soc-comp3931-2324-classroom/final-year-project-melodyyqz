@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../thirdparty/embree/include/embree4/rtcore.h"
+#include <embree3/rtcore.h>
 
 class EmbreeManager {
 public:

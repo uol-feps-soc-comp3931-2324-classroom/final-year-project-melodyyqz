@@ -14,18 +14,13 @@
 # EXTERNAL cache entries
 ########################
 
-//Build shared libraries
-BUILD_SHARED_LIBS:BOOL=OFF
-
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/bin/Hostx64/x64/lib.exe
 
-//For backwards compatibility, what version of CMake commands and
-// syntax should this version of CMake try to support.
-CMAKE_BACKWARDS_COMPATIBILITY:STRING=2.4
-
-//List of generated configurations.
-CMAKE_CONFIGURATION_TYPES:STRING=Debug;Release;RelWithDebInfo
+//Semicolon separated list of supported configuration types, only
+// supports Debug, Release, MinSizeRel, and RelWithDebInfo, anything
+// else will be ignored.
+CMAKE_CONFIGURATION_TYPES:STRING=Debug;Release;MinSizeRel;RelWithDebInfo
 
 //Flags used by the CXX compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=/DWIN32 /D_WINDOWS /W3 /GR /EHsc
@@ -253,228 +248,6 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=OFF
 
-//Enable to build 7-Zip source packages
-CPACK_SOURCE_7Z:BOOL=ON
-
-//Enable to build ZIP source packages
-CPACK_SOURCE_ZIP:BOOL=ON
-
-//C++ namespace to put API symbols into.
-EMBREE_API_NAMESPACE:STRING=
-
-//Enables backface culling.
-EMBREE_BACKFACE_CULLING:BOOL=OFF
-
-//Enables backface culling for curve primitives.
-EMBREE_BACKFACE_CULLING_CURVES:BOOL=OFF
-
-//Enables backface culling for sphere primitives.
-EMBREE_BACKFACE_CULLING_SPHERES:BOOL=OFF
-
-//Builds GLFW from source.
-EMBREE_BUILD_GLFW_FROM_SOURCE:BOOL=OFF
-
-//Force to download, build, and staticly link Google Benchmark
-EMBREE_BUILD_GOOGLE_BENCHMARK_FROM_SOURCE:BOOL=OFF
-
-//Enables double indexed poly layout.
-EMBREE_COMPACT_POLYS:BOOL=OFF
-
-//Self intersection avoidance factor for flat curves. Specify floating
-// point value in range 0 to inf.
-EMBREE_CURVE_SELF_INTERSECTION_AVOIDANCE_FACTOR:STRING=2.0
-
-//Enables self intersection avoidance for ray oriented discs.
-EMBREE_DISC_POINT_SELF_INTERSECTION_AVOIDANCE:BOOL=ON
-
-//Enables filter functions.
-EMBREE_FILTER_FUNCTION:BOOL=ON
-
-//Enables support for curve geometries.
-EMBREE_GEOMETRY_CURVE:BOOL=ON
-
-//Enables support for grid geometries.
-EMBREE_GEOMETRY_GRID:BOOL=ON
-
-//Enables support for instances.
-EMBREE_GEOMETRY_INSTANCE:BOOL=ON
-
-//Enables support for instance arrays.
-EMBREE_GEOMETRY_INSTANCE_ARRAY:BOOL=ON
-
-//Enables support for point geometries.
-EMBREE_GEOMETRY_POINT:BOOL=ON
-
-//Enables support for quad geometries.
-EMBREE_GEOMETRY_QUAD:BOOL=ON
-
-//Enables support for subdiv geometries.
-EMBREE_GEOMETRY_SUBDIVISION:BOOL=ON
-
-//Enables support for triangle geometries.
-EMBREE_GEOMETRY_TRIANGLE:BOOL=ON
-
-//Enables support for user geometries.
-EMBREE_GEOMETRY_USER:BOOL=ON
-
-//Ignores invalid rays.
-EMBREE_IGNORE_INVALID_RAYS:BOOL=OFF
-
-//Install Embree dependencies in binary packages and install
-EMBREE_INSTALL_DEPENDENCIES:BOOL=OFF
-
-//Enables AVX ISA.
-EMBREE_ISA_AVX:BOOL=ON
-
-//Enables AVX2 ISA.
-EMBREE_ISA_AVX2:BOOL=ON
-
-//Enables AVX512 ISA.
-EMBREE_ISA_AVX512:BOOL=OFF
-
-//Enables SSE2 ISA.
-EMBREE_ISA_SSE2:BOOL=ON
-
-//Enables SSE4.2 ISA.
-EMBREE_ISA_SSE42:BOOL=ON
-
-//Build Embree with support for ISPC applications.
-EMBREE_ISPC_SUPPORT:BOOL=OFF
-
-//Name of the embree library file (default is embree4)
-EMBREE_LIBRARY_NAME:STRING=embree4
-
-//Maximum number of instance levels.
-EMBREE_MAX_INSTANCE_LEVEL_COUNT:STRING=1
-
-//Selects highest ISA to support.
-EMBREE_MAX_ISA:STRING=NONE
-
-//Enables min-width feature to enlarge curve and point thickness
-// to pixel width.
-EMBREE_MIN_WIDTH:BOOL=OFF
-
-//Enables ray mask support.
-EMBREE_RAY_MASK:BOOL=ON
-
-//Enabled support for ray packets.
-EMBREE_RAY_PACKETS:BOOL=ON
-
-//When enabled Embree compiles with stack protection against return
-// address overrides.
-EMBREE_STACK_PROTECTOR:BOOL=OFF
-
-//Build Embree as a static library.
-EMBREE_STATIC_LIB:BOOL=OFF
-
-//Use the static version of the C/C++ runtime library.
-EMBREE_STATIC_RUNTIME:BOOL=OFF
-
-//Enables statistic counters.
-EMBREE_STAT_COUNTERS:BOOL=OFF
-
-//Enables SYCL GPU support.
-EMBREE_SYCL_SUPPORT:BOOL=OFF
-
-//Selects tasking system
-EMBREE_TASKING_SYSTEM:STRING=TBB
-
-//The TBB component/library name.
-EMBREE_TBB_COMPONENT:STRING=tbb
-
-//Enable to build Embree tutorials
-EMBREE_TUTORIALS:BOOL=ON
-
-//Enables GLFW usage in tutorials. When disabled tutorial can only
-// render to disk.
-EMBREE_TUTORIALS_GLFW:BOOL=ON
-
-//Use google benchmark (note: set benchmark_DIR to benchmark_install_dir/lib/cmake/benchmark)
-EMBREE_USE_GOOGLE_BENCHMARK:BOOL=OFF
-
-//Create Embree ZIP package
-EMBREE_ZIP_MODE:BOOL=ON
-
-//Single output directory for building all executables.
-EXECUTABLE_OUTPUT_PATH:PATH=
-
-//Directory under which to collect all populated content
-FETCHCONTENT_BASE_DIR:PATH=C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps
-
-//Disables all attempts to download or update content and assumes
-// source dirs already exist
-FETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF
-
-//Enables QUIET option for all content population
-FETCHCONTENT_QUIET:BOOL=ON
-
-//When not empty, overrides where to find pre-populated content
-// for glfw
-FETCHCONTENT_SOURCE_DIR_GLFW:PATH=
-
-//Enables UPDATE_DISCONNECTED behavior for all content population
-FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
-
-//Enables UPDATE_DISCONNECTED behavior just for population of glfw
-FETCHCONTENT_UPDATES_DISCONNECTED_GLFW:BOOL=OFF
-
-//Git command line client
-GIT_EXECUTABLE:FILEPATH=C:/Program Files/Git/cmd/git.exe
-
-//Value Computed by CMake
-GLFW_BINARY_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-build
-
-//Generate installation target
-GLFW_INSTALL:BOOL=ON
-
-//Value Computed by CMake
-GLFW_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-GLFW_SOURCE_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/build/_deps/glfw-src
-
-//Force use of high-performance GPU on hybrid systems
-GLFW_USE_HYBRID_HPG:BOOL=OFF
-
-//Assume the Vulkan loader is linked with the application
-GLFW_VULKAN_STATIC:BOOL=OFF
-
-//Path to a file.
-JPEG_INCLUDE_DIR:PATH=JPEG_INCLUDE_DIR-NOTFOUND
-
-//Path to a library.
-JPEG_LIBRARY_DEBUG:FILEPATH=JPEG_LIBRARY_DEBUG-NOTFOUND
-
-//Path to a library.
-JPEG_LIBRARY_RELEASE:FILEPATH=JPEG_LIBRARY_RELEASE-NOTFOUND
-
-//Single output directory for building all libraries.
-LIBRARY_OUTPUT_PATH:PATH=
-
-//Path to a file.
-MSVC_REDIST_DIR:PATH=C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Redist/MSVC/14.38.33135
-
-//OpenGL library for win32
-OPENGL_gl_LIBRARY:STRING=opengl32
-
-//GLU library for win32
-OPENGL_glu_LIBRARY:STRING=glu32
-
-//Path to a file.
-OPENIMAGEIO_INCLUDE_DIR:PATH=OPENIMAGEIO_INCLUDE_DIR-NOTFOUND
-
-//Path to a library.
-OPENIMAGEIO_LIBRARY:FILEPATH=OPENIMAGEIO_LIBRARY-NOTFOUND
-
-//Root of OpenImageIO installation
-OPENIMAGEIO_ROOT:PATH=OPENIMAGEIO_ROOT-NOTFOUND
-
-//Path to a file.
-PNG_INCLUDE_DIR:PATH=PNG_INCLUDE_DIR-NOTFOUND
-
-//Path to a library.
-PNG_LIBRARIES:FILEPATH=PNG_LIBRARIES-NOTFOUND
-
 //Build Examples.
 RAPIDOBJ_BuildExamples:BOOL=OFF
 
@@ -499,75 +272,6 @@ RapidObj_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 RapidObj_SOURCE_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/rapidobj
 
-//The directory containing a CMake configuration file for TBB.
-TBB_DIR:PATH=C:/Program Files (x86)/Intel/oneAPI/tbb/2021.11/lib/cmake/tbb
-
-//Use MSVC runtime library DLL
-USE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=ON
-
-//Path to a file.
-_tbb_debug_dll:FILEPATH=C:/Program Files (x86)/Intel/oneAPI/tbb/latest/bin/tbb12_debug.dll
-
-//Path to a library.
-_tbb_debug_lib:FILEPATH=C:/Program Files (x86)/Intel/oneAPI/tbb/latest/lib/tbb12_debug.lib
-
-//Path to a file.
-_tbb_release_dll:FILEPATH=C:/Program Files (x86)/Intel/oneAPI/tbb/latest/bin/tbb12.dll
-
-//Path to a library.
-_tbb_release_lib:FILEPATH=C:/Program Files (x86)/Intel/oneAPI/tbb/latest/lib/tbb12.lib
-
-//Value Computed by CMake
-embree4_BINARY_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/build/thirdparty/embree
-
-//Value Computed by CMake
-embree4_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-embree4_SOURCE_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/embree
-
-//The directory containing a CMake configuration file for embree.
-embree_DIR:PATH=embree_DIR-NOTFOUND
-
-//Dependencies for the target
-embree_LIB_DEPENDS:STATIC=general;embree_sse42;general;embree_avx;general;embree_avx2;general;sys;general;math;general;simd;general;lexers;general;tasking;
-
-//Dependencies for the target
-embree_avx2_LIB_DEPENDS:STATIC=general;tasking;
-
-//Dependencies for the target
-embree_avx_LIB_DEPENDS:STATIC=general;tasking;
-
-//Value Computed by CMake
-embree_info_BINARY_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/build/thirdparty/embree/tutorials/embree_info
-
-//Value Computed by CMake
-embree_info_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-embree_info_SOURCE_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/embree/tutorials/embree_info
-
-//Dependencies for the target
-embree_sse42_LIB_DEPENDS:STATIC=general;tasking;
-
-//The directory containing a CMake configuration file for glfw3.
-glfw3_DIR:PATH=glfw3_DIR-NOTFOUND
-
-//Dependencies for the target
-image_LIB_DEPENDS:STATIC=general;sys;general;math;
-
-//Dependencies for the target
-lexers_LIB_DEPENDS:STATIC=general;sys;general;math;
-
-//Value Computed by CMake
-minimal_BINARY_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/build/thirdparty/embree/tutorials/minimal
-
-//Value Computed by CMake
-minimal_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-minimal_SOURCE_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/embree/tutorials/minimal
-
 //Value Computed by CMake
 sc21myqz-final-year-project_BINARY_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/build
 
@@ -586,20 +290,13 @@ stb_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 stb_SOURCE_DIR:STATIC=C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/stb
 
-//Dependencies for the target
-tasking_LIB_DEPENDS:STATIC=general;TBB::tbb;
-
 
 ########################
 # INTERNAL cache entries
 ########################
 
-//build documentation (internal only)
-BUILD_DOC:INTERNAL=OFF
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_BACKWARDS_COMPATIBILITY
-CMAKE_BACKWARDS_COMPATIBILITY-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=c:/Users/melod/Documents/final-year-project-melodyyqz/build
 //Major version of cmake used to create the current loaded cache
@@ -660,12 +357,6 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=C:/Program Files/Microsoft Visual Studio/2022/
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
-//Test CMAKE_HAVE_LIBC_PTHREAD
-CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=
-//Have library pthreads
-CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
-//Have library pthread
-CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/melod/Documents/final-year-project-melodyyqz
@@ -716,7 +407,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=58
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib
@@ -762,84 +453,6 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//Result of TRY_COMPILE
-COMPILER_SUPPORTS_AVX:INTERNAL=TRUE
-//Result of TRY_COMPILE
-COMPILER_SUPPORTS_AVX2:INTERNAL=TRUE
-//Result of TRY_COMPILE
-COMPILER_SUPPORTS_AVX512:INTERNAL=TRUE
-//ADVANCED property for variable: CPACK_SOURCE_7Z
-CPACK_SOURCE_7Z-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CPACK_SOURCE_ZIP
-CPACK_SOURCE_ZIP-ADVANCED:INTERNAL=1
-//Default CMake configuration types set.
-DEFAULT_CMAKE_CONFIGURATION_TYPES_SET:INTERNAL=ON
-//ADVANCED property for variable: EMBREE_INSTALL_DEPENDENCIES
-EMBREE_INSTALL_DEPENDENCIES-ADVANCED:INTERNAL=1
-//STRINGS property for variable: EMBREE_MAX_ISA
-EMBREE_MAX_ISA-STRINGS:INTERNAL=NONE;SSE2;SSE4.2;AVX;AVX2;AVX512;DEFAULT
-//Applys an optional patch to GLFW.
-EMBREE_PATCH_GLFW_SOURCE:INTERNAL=OFF
-//ADVANCED property for variable: EMBREE_STATIC_LIB
-EMBREE_STATIC_LIB-ADVANCED:INTERNAL=0
-//STRINGS property for variable: EMBREE_TASKING_SYSTEM
-EMBREE_TASKING_SYSTEM-STRINGS:INTERNAL=TBB;INTERNAL;PPL
-//ADVANCED property for variable: EMBREE_ZIP_MODE
-EMBREE_ZIP_MODE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: EXECUTABLE_OUTPUT_PATH
-EXECUTABLE_OUTPUT_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: FETCHCONTENT_BASE_DIR
-FETCHCONTENT_BASE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: FETCHCONTENT_FULLY_DISCONNECTED
-FETCHCONTENT_FULLY_DISCONNECTED-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: FETCHCONTENT_QUIET
-FETCHCONTENT_QUIET-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: FETCHCONTENT_SOURCE_DIR_GLFW
-FETCHCONTENT_SOURCE_DIR_GLFW-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: FETCHCONTENT_UPDATES_DISCONNECTED
-FETCHCONTENT_UPDATES_DISCONNECTED-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: FETCHCONTENT_UPDATES_DISCONNECTED_GLFW
-FETCHCONTENT_UPDATES_DISCONNECTED_GLFW-ADVANCED:INTERNAL=1
-//Details about finding Git
-FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[C:/Program Files/Git/cmd/git.exe][v2.43.0.windows.1()]
-//Details about finding OpenGL
-FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[opengl32][c ][v()]
-//Details about finding Threads
-FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
-//ADVANCED property for variable: GIT_EXECUTABLE
-GIT_EXECUTABLE-ADVANCED:INTERNAL=1
-//Build the GLFW documentation
-GLFW_BUILD_DOCS:INTERNAL=OFF
-//Build the GLFW example programs
-GLFW_BUILD_EXAMPLES:INTERNAL=OFF
-//Build the GLFW test programs
-GLFW_BUILD_TESTS:INTERNAL=OFF
-//ADVANCED property for variable: JPEG_INCLUDE_DIR
-JPEG_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: JPEG_LIBRARY_DEBUG
-JPEG_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: JPEG_LIBRARY_RELEASE
-JPEG_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: LIBRARY_OUTPUT_PATH
-LIBRARY_OUTPUT_PATH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: MSVC_REDIST_DIR
-MSVC_REDIST_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENGL_gl_LIBRARY
-OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENGL_glu_LIBRARY
-OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENIMAGEIO_INCLUDE_DIR
-OPENIMAGEIO_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENIMAGEIO_LIBRARY
-OPENIMAGEIO_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENIMAGEIO_ROOT
-OPENIMAGEIO_ROOT-ADVANCED:INTERNAL=1
-//Last value of OPENIMAGEIO_ROOT to detect changes
-OPENIMAGEIO_ROOT_LAST:INTERNAL=OPENIMAGEIO_ROOT-NOTFOUND
-//ADVANCED property for variable: PNG_INCLUDE_DIR
-PNG_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: PNG_LIBRARIES
-PNG_LIBRARIES-ADVANCED:INTERNAL=1
 RAPIDOBJ_VERSION_MAJOR:INTERNAL=1
 RAPIDOBJ_VERSION_MINOR:INTERNAL=1
 RAPIDOBJ_VERSION_PATCH:INTERNAL=0

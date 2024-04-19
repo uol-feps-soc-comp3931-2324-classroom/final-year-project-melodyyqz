@@ -17,7 +17,7 @@
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\mat44.cpp">
       <Filter>util\vmlib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\glad.c" />
+    <ClCompile Include="glad.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.hpp" />

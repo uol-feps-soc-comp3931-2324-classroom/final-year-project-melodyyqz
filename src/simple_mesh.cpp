@@ -5,7 +5,7 @@
 #include "simple_mesh.hpp"
 #include <rapidobj/rapidobj.hpp>
 #include <stb_image.h>
-#include "../thirdparty/embree/include/embree4/rtcore.h"
+#include <embree3/rtcore.h>
 #include <iostream>
 #include <unordered_map>
 #include <vector>

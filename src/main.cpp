@@ -3,10 +3,9 @@
 
 #include <glad/glad.h>
 #include "rapidobj/rapidobj.hpp"
-#include <embree4/rtcore.h>
-#include <embree4/rtcore_common.h>
+#include <embree3/rtcore.h>
+#include <embree3/rtcore_common.h>
 #include <iostream>
-#include "../embree/tutorials/common/tutorial/tutorial.h"
 #include "simple_mesh.hpp"
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -19,9 +18,15 @@
 #include "EBO.hpp"
 #include "Camera.h"
 #include "embree_manager.h"
+#include "photon_emitter.h"
+#include "scene.h"
+#include "light.h"
+#include "photon.h"
 
+// Window dimensions
 const unsigned int width = 800;
 const unsigned int height = 800;
+
 
 int main() {
     glfwInit();
@@ -74,6 +79,21 @@ int main() {
     glDisable(GL_CULL_FACE);
 
     Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
+
+    // Photon Emitter testing code here
+    Scene scene;
+    std::vector<Light> lights;
+    // Setup lights and scene
+    PhotonEmitter emitter(scene, lights);
+    std::vector<Photon> photonMap;
+    emitter.emitPhotons(100, photonMap);  // Emit photons
+
+    // Output results
+    std::cout << "Emitted " << photonMap.size() << " photons." << std::endl;
+    for (const auto& photon : photonMap) {
+        std::cout << "Photon at position: " << photon.position.transpose()
+            << " with energy: " << photon.energy.transpose() << std::endl;
+    }
 
     // Don't close window instantly
     while (!glfwWindowShouldClose(window)) {

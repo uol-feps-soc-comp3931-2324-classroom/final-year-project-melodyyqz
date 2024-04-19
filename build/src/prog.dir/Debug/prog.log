@@ -1,4 +1,48 @@
-﻿  main.cpp
+﻿  Building Custom Rule C:/Users/melod/Documents/final-year-project-melodyyqz/src/CMakeLists.txt
+  Camera.cpp
+  EBO.cpp
+  VAO.cpp
+  VBO.cpp
+  embree_manager.cpp
+  empty_source.cpp
+  main.cpp
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(109,68): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   photon_emitter.cpp
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(23,38): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file '../../src/photon_emitter.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(23,38): error C2143: syntax error: missing ',' before '&'
+  (compiling source file '../../src/photon_emitter.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(25,82): error C2065: 'mesh': undeclared identifier
+  (compiling source file '../../src/photon_emitter.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(25,133): error C2065: 'mesh': undeclared identifier
+  (compiling source file '../../src/photon_emitter.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(25,3): error C2660: 'rtcSetSharedGeometryBuffer': function does not take 6 arguments
+  (compiling source file '../../src/photon_emitter.cpp')
+  C:\Users\melod\Documents\embree-3.13.5.x64.vc14.windows\include\embree3\rtcore_geometry.h(177,14):
+  see declaration of 'rtcSetSharedGeometryBuffer'
+  C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(25,3):
+  while trying to match the argument list '(RTCGeometry, RTCBufferType, int, RTCFormat, int, size_t)'
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(26,80): error C2065: 'mesh': undeclared identifier
+  (compiling source file '../../src/photon_emitter.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(26,126): error C2065: 'mesh': undeclared identifier
+  (compiling source file '../../src/photon_emitter.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(26,3): error C2660: 'rtcSetSharedGeometryBuffer': function does not take 6 arguments
+  (compiling source file '../../src/photon_emitter.cpp')
+  C:\Users\melod\Documents\embree-3.13.5.x64.vc14.windows\include\embree3\rtcore_geometry.h(177,14):
+  see declaration of 'rtcSetSharedGeometryBuffer'
+  C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(26,3):
+  while trying to match the argument list '(RTCGeometry, RTCBufferType, int, RTCFormat, int, size_t)'
+  
+  shader_class.cpp
+  simple_mesh.cpp
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\simple_mesh.cpp(32,40): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  empty.cpp
+  mat44.cpp
   Generating Code...
-  prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe

@@ -1,6 +1,6 @@
 #include "embree_manager.h"
 #include <iostream>
-#include "../thirdparty/embree/include/embree4/rtcore.h"
+#include <embree3/rtcore.h>
 
 
 EmbreeManager::EmbreeManager() : device(nullptr), scene(nullptr) {}
