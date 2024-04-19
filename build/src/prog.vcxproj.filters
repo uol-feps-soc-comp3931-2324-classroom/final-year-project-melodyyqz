@@ -44,6 +44,24 @@
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\util\vmlib\vec4.hpp">
       <Filter>util\vmlib</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Camera.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\embree_manager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\light.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\photon.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\photon_emitter.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\scene.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\CMakeLists.txt" />
@@ -57,6 +75,12 @@
     </Filter>
     <Filter Include="util\vmlib">
       <UniqueIdentifier>{2D8E87EC-6D74-3D2E-B58B-928924FD0B20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{3b4f2784-d65f-4546-891e-b56cee063ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{3226dd52-f52d-489b-877c-9a8223f21cdb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

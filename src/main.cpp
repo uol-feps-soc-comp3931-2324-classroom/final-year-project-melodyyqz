@@ -37,6 +37,7 @@ int main() {
     // Initialize Embree
     EmbreeManager embreeManager;
     embreeManager.initialize();
+    Scene scene;
 
     // Create window
     GLFWwindow* window = glfwCreateWindow(width, height, "Caustics", NULL, NULL);
@@ -58,6 +59,7 @@ int main() {
 
     // Load object
     SimpleMeshData armadilloMeshData = load_wavefront_obj("Armadillo.obj");
+    scene.addMesh(armadilloMeshData);
 
     // Create a contiguous array of GLfloat for positions
     std::vector<GLfloat> positionData;
@@ -81,9 +83,8 @@ int main() {
     Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
 
     // Photon Emitter testing code here
-    Scene scene;
     std::vector<Light> lights;
-    // Setup lights and scene
+    lights.emplace_back(Eigen::Vector3f(0, 5, 0), Eigen::Vector3f(0, -1, 0), Eigen::Vector3f(1, 1, 1));  // Example to add a light
     PhotonEmitter emitter(scene, lights);
     std::vector<Photon> photonMap;
     emitter.emitPhotons(100, photonMap);  // Emit photons
@@ -110,29 +111,6 @@ int main() {
         glfwSwapBuffers(window);
         glfwPollEvents();
 	}
-
-
-    // Create an Embree device
-    /*
-    //RTCDevice device = rtcNewDevice(nullptr);
-    RTCScene scene = rtcNewScene(device);
-
-    for (const auto& shape : armadillo.shapes) {
-        for (size_t i = 0; i < shape.mesh.num_face_vertices.size(); ++i) {
-			RTCGeometry geometry = rtcNewGeometry(device, RTC_GEOMETRY_TYPE_TRIANGLE);
-
-			rtcSetSharedGeometryBuffer(geometry, RTC_BUFFER_TYPE_VERTEX, 0, RTC_FORMAT_FLOAT3, shape.mesh.indices.data()[0], 0, sizeof(float) * 3, shape.mesh.indices.size());
-			rtcSetSharedGeometryBuffer(geometry, RTC_BUFFER_TYPE_INDEX, 0, RTC_FORMAT_UINT3, shape.mesh.indices.data(), 0, sizeof(unsigned int) * 3, shape.mesh.indices.size());
-
-			rtcCommitGeometry(geometry);
-			rtcAttachGeometry(scene, geometry);
-			rtcReleaseGeometry(geometry);
-		}
-	}
-    rtcCommitScene(scene);
-
-    rtcReleaseScene(scene);
-    rtcReleaseDevice(device);*/
 
     // Cleanup
     VAO1.Delete();

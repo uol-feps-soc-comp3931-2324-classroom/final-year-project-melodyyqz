@@ -1,8 +1,10 @@
 #pragma once
 
 #include "photon.h"
+#include "simple_mesh.hpp"
 #include <embree3/rtcore.h>
 #include <Eigen/Dense>
+#include <iostream> // for debugging only
 
 class Scene {
     RTCDevice device;
@@ -28,6 +30,15 @@ public:
 		rtcAttachGeometry(scene, geom);
 		rtcReleaseGeometry(geom);
         rtcCommitScene(scene);
+
+        // Log the scene bounds after committing the scene
+        RTCBounds bounds;
+        rtcGetSceneBounds(scene, &bounds);
+        std::cout << "Scene Bounds: ["
+            << bounds.lower_x << ", " << bounds.lower_y << ", " << bounds.lower_z
+            << "] to ["
+            << bounds.upper_x << ", " << bounds.upper_y << ", " << bounds.upper_z
+            << "]" << std::endl;
 	}
 
     bool trace(const Photon& photon, Eigen::Vector3f& hitPoint) {
@@ -58,9 +69,14 @@ public:
         // Check if the ray hit any geometry
         if (rayHit.hit.geomID != RTC_INVALID_GEOMETRY_ID) {
             hitPoint = photon.position + photon.direction * rayHit.ray.tfar;
+            std::cout << "Hit detected at distance: " << rayHit.ray.tfar << std::endl;
             return true;
         }
         // Ray did not hit any geometry
+        std::cout << "No hit detected. Ray details: Origin("
+            << rayHit.ray.org_x << ", " << rayHit.ray.org_y << ", " << rayHit.ray.org_z
+            << ") Direction("
+            << rayHit.ray.dir_x << ", " << rayHit.ray.dir_y << ", " << rayHit.ray.dir_z << ")" << std::endl;
         return false;
     }
 };
