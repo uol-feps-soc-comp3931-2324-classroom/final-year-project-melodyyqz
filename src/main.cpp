@@ -60,6 +60,7 @@ int main() {
     // Load object
     SimpleMeshData armadilloMeshData = load_wavefront_obj("Armadillo.obj");
     scene.addMesh(armadilloMeshData);
+    scene.commitScene();
 
     // Create a contiguous array of GLfloat for positions
     std::vector<GLfloat> positionData;

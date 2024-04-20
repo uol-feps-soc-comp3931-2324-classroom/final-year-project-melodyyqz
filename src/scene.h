@@ -41,6 +41,10 @@ public:
             << "]" << std::endl;
 	}
 
+    void commitScene() {
+		rtcCommitScene(scene);
+	}
+
     bool trace(const Photon& photon, Eigen::Vector3f& hitPoint) {
         RTCIntersectContext context;
         rtcInitIntersectContext(&context);
