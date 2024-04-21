@@ -54,11 +54,19 @@ int main() {
 
     // Create shader program
     Shader shaderProgram("default.vert", "default.frag");
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
+    // Initialise model
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+
     VAO VAO1;
     VAO1.Bind();
 
     // Load object
-    SimpleMeshData armadilloMeshData = load_wavefront_obj("Armadillo.obj");
+    SimpleMeshData armadilloMeshData = load_wavefront_obj("glass-obj.obj");
     scene.addMesh(armadilloMeshData);
     scene.commitScene();
 
@@ -102,7 +110,10 @@ int main() {
         // Background colour
 		glClearColor(1.f, 1.f, 1.f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+        
         shaderProgram.Activate();
+        GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
         camera.Inputs(window);
         camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
@@ -125,3 +136,4 @@ int main() {
     return EXIT_SUCCESS;
 
 }
+// object https://free3d.com/3d-model/glass-6488.html

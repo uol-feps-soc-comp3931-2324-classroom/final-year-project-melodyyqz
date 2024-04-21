@@ -1,5 +1,3 @@
 ﻿  main.cpp
-C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(111,68): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  photon_emitter.cpp
-  Generating Code...
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(119,68): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe

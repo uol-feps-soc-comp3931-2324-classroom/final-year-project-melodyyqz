@@ -76,11 +76,19 @@
     <Filter Include="util\vmlib">
       <UniqueIdentifier>{2D8E87EC-6D74-3D2E-B58B-928924FD0B20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets">
-      <UniqueIdentifier>{3b4f2784-d65f-4546-891e-b56cee063ae2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headers">
-      <UniqueIdentifier>{3226dd52-f52d-489b-877c-9a8223f21cdb}</UniqueIdentifier>
+      <UniqueIdentifier>{985ac08a-459f-4ce6-b4fe-7bf181894ba0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{7c56ad79-6938-4495-877f-56a629130b4d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="default.frag">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="default.vert">
+      <Filter>Assets</Filter>
+    </None>
   </ItemGroup>
 </Project>

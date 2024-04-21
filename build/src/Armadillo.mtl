@@ -1,11 +1,11 @@
-# Blender MTL File: 'GlassMaterial'
+# Blender MTL File: 'None'
 # Material Count: 1
 
-newmtl Glass
-Ns 500
+newmtl glass_material
+Ns 2000
 Ka 0.0 0.0 0.0
-Kd 0.1 0.1 0.1
-Ks 0.5 0.5 0.5
+Kd 0.0 0.0 0.0
+Ks 1.0 1.0 1.0
 Ni 1.52
 d 0.1
-illum 3
+illum 4

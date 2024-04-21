@@ -67,10 +67,6 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\melod\Documents\final-year-project-melodyyqz\build\libraries\include;C:\Users\melod\Documents\embree-3.13.5.x64.vc14.windows\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\melod\Documents\final-year-project-melodyyqz\build\libraries\lib;C:\Users\melod\Documents\embree-3.13.5.x64.vc14.windows\lib;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
