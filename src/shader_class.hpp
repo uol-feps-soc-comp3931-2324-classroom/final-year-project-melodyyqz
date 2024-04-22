@@ -17,6 +17,7 @@ class Shader {
 
 		void Activate();
 		void Delete();
+		void checkCompileErrors(GLuint shader, std::string type);
 
 };
 

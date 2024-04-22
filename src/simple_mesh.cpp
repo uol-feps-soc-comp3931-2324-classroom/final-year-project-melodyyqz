@@ -14,43 +14,61 @@ SimpleMeshData load_wavefront_obj(char const* aPath) {
     auto result = rapidobj::ParseFile(aPath);
     if (result.error) {
         std::cout << result.error.code.message() << '\n';
-        // Handle the error appropriately
-        // For example, return an empty SimpleMeshData object or throw an exception
+        return{};
     }
 
     rapidobj::Triangulate(result);
     SimpleMeshData ret;
 
     std::unordered_map<int, int> positionIndexMapping; // Maps original position indices to sequential indices
+    std::unordered_map<int, int> normalIndexMapping;
     std::vector<Vec3f> sequentialPositions; // Stores vertex positions in the order they're encountered
+    std::vector<Vec3f> sequentialNormals;
 
     for (const auto& shape : result.shapes) {
         for (const auto& idx : shape.mesh.indices) {
+            int positionIndex = -1;
+
             // Process position index
             if (positionIndexMapping.find(idx.position_index) == positionIndexMapping.end()) {
-                // This index hasn't been seen before; add it to the mapping
-                int newSequentialIndex = sequentialPositions.size();
-                positionIndexMapping[idx.position_index] = newSequentialIndex;
+                positionIndex = sequentialPositions.size();
+                positionIndexMapping[idx.position_index] = positionIndex;
 
-                // Add the corresponding vertex position to sequentialPositions
+                // Add the corresponding vertex position
                 sequentialPositions.emplace_back(Vec3f{
                     result.attributes.positions[idx.position_index * 3 + 0],
                     result.attributes.positions[idx.position_index * 3 + 1],
                     result.attributes.positions[idx.position_index * 3 + 2]
                     });
             }
+            else {
+                positionIndex = positionIndexMapping[idx.position_index];
+            }
 
-            // Use the new sequential index for this vertex in the indices vector
-            ret.indices.push_back(positionIndexMapping[idx.position_index]);
+            // Process normal index, ensure it's associated with the correct vertex index
+            if (idx.normal_index != -1) {
+                if (normalIndexMapping.find(idx.normal_index) == normalIndexMapping.end()) {
+                    normalIndexMapping[idx.normal_index] = positionIndex; // Use positionIndex to align normals
+                    sequentialNormals.resize(sequentialPositions.size()); // Ensure normals array is large enough
+                    sequentialNormals[positionIndex] = Vec3f{
+                        result.attributes.normals[idx.normal_index * 3 + 0],
+                        result.attributes.normals[idx.normal_index * 3 + 1],
+                        result.attributes.normals[idx.normal_index * 3 + 2]
+                    };
+                }
+            }
+
+            // Always use the position index for indices vector
+            ret.indices.push_back(positionIndex);
         }
     }
 
-    // After processing all indices, ret.positions should contain the reindexed positions
     ret.positions = sequentialPositions;
+    ret.normals = sequentialNormals; // This should now be aligned properlyContinue to process normals and any other attributes similarly, if necessary
 
-    // Continue to process normals and any other attributes similarly, if necessary
-
-    std::cout << "Processed " << ret.indices.size() << " indices and " << ret.positions.size() << " positions.\n";
+    std::cout << "Processed " << ret.indices.size() << " indices, "
+        << ret.positions.size() << " positions, and "
+        << ret.normals.size() << " normals.\n"; 
     return ret;
 }
 

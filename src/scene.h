@@ -73,14 +73,14 @@ public:
         // Check if the ray hit any geometry
         if (rayHit.hit.geomID != RTC_INVALID_GEOMETRY_ID) {
             hitPoint = photon.position + photon.direction * rayHit.ray.tfar;
-            std::cout << "Hit detected at distance: " << rayHit.ray.tfar << std::endl;
+            //std::cout << "Hit detected at distance: " << rayHit.ray.tfar << std::endl;
             return true;
         }
         // Ray did not hit any geometry
-        std::cout << "No hit detected. Ray details: Origin("
+       /* std::cout << "No hit detected. Ray details: Origin("
             << rayHit.ray.org_x << ", " << rayHit.ray.org_y << ", " << rayHit.ray.org_z
             << ") Direction("
-            << rayHit.ray.dir_x << ", " << rayHit.ray.dir_y << ", " << rayHit.ray.dir_z << ")" << std::endl;
+            << rayHit.ray.dir_x << ", " << rayHit.ray.dir_y << ", " << rayHit.ray.dir_z << ")" << std::endl;*/
         return false;
     }
 };
