@@ -113,7 +113,8 @@ int main() {
 
     // Photon Emitter testing code here
     std::vector<Light> lights;
-    lights.emplace_back(Eigen::Vector3f(0, 5, 0), Eigen::Vector3f(0, -1, 0), Eigen::Vector3f(1, 1, 1));  // Example to add a light
+    lights.push_back(light);
+    //lights.emplace_back(Eigen::Vector3f(0, 5, 0), Eigen::Vector3f(0, -1, 0), Eigen::Vector3f(1, 1, 1));  // Example to add a light
     PhotonEmitter emitter(scene, lights);
     std::vector<Photon> photonMap;
     emitter.emitPhotons(100, photonMap);  // Emit photons
