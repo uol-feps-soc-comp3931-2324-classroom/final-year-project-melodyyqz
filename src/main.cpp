@@ -54,11 +54,12 @@ int main() {
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // Create shader program
     Shader shaderProgram("default.vert", "default.frag");
-    //glEnable(GL_BLEND);
-    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //glEnable(GL_DEPTH_TEST);
 
 
     // Initialise model
@@ -104,7 +105,7 @@ int main() {
     VBO_Normals.Unbind();
     EBO1.Unbind();
 
-    glDisable(GL_DEPTH_TEST);
+    //glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
 
     // Camera and light
