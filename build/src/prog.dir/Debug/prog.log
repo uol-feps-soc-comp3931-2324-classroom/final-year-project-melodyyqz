@@ -1,3 +1,1 @@
-﻿  main.cpp
-C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(148,59): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe
+﻿  prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe

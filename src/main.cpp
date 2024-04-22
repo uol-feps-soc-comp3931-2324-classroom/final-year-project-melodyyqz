@@ -108,24 +108,20 @@ int main() {
     //glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
 
-    // Camera and light
+    // Camera, light, and photon emitter setup
     Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
     Light light(Eigen::Vector3f(0.0f, 5.0f, 5.0f), Eigen::Vector3f(0.0f, -1.0f, -1.0f), Eigen::Vector3f(1.0f, 1.0f, 1.0f));
+    PhotonEmitter emitter(light, 30.0f);
 
-    // Photon Emitter testing code here
-    std::vector<Light> lights;
-    lights.push_back(light);
-    //lights.emplace_back(Eigen::Vector3f(0, 5, 0), Eigen::Vector3f(0, -1, 0), Eigen::Vector3f(1, 1, 1));  // Example to add a light
-    PhotonEmitter emitter(scene, lights);
-    std::vector<Photon> photonMap;
-    emitter.emitPhotons(100, photonMap);  // Emit photons
+    // Emit photons
+    std::vector<Photon> photonMap = emitter.emitPhotons(1000);  // Emit 1000 photons
 
-    // Output results
     std::cout << "Emitted " << photonMap.size() << " photons." << std::endl;
-    /*for (const auto& photon : photonMap) {
-        std::cout << "Photon at position: " << photon.position.transpose()
-            << " with energy: " << photon.energy.transpose() << std::endl;
-    }*/
+    for (const auto& photon : photonMap) {
+        std::cout << "Photon Position: " << photon.position.transpose()
+            << ", Direction: " << photon.direction.transpose()
+            << ", Energy: " << photon.energy.transpose() << std::endl;
+    }
 
     // Don't close window instantly
     while (!glfwWindowShouldClose(window)) {

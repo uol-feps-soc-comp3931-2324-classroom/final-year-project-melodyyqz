@@ -91,7 +91,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\melod\Documents\final-year-project-melodyyqz\src;C:\Users\melod\Documents\final-year-project-melodyyqz\thirdparty\stb\.;C:\Program Files %28x86%29\Intel\oneAPI\tbb\2021.11\include;C:\Users\melod\Documents\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/rapidobj/include"</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/melod/Documents/final-year-project-melodyyqz/thirdparty/rapidobj/include" /FS</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>

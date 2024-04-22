@@ -1,29 +1,49 @@
 #include "photon_emitter.h"
+#include <vector>
 #include <random>
-#include <iostream> // just for debugging outputs
+#include <cmath>
+#include <iostream> // For debugging outputs
 
-void PhotonEmitter::emitPhotons(int numPhotons, std::vector<Photon>& photonMap) {
-    std::default_random_engine generator;
-    std::uniform_real_distribution<float> distribution_xz(-1.0, 1.0);
-    std::uniform_real_distribution<float> distribution_y(-1.0, 0.0);
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
-    for (const auto& light : lights) {
-        for (int i = 0; i < numPhotons; ++i) {
-            // Random direction for simplicity
-            Eigen::Vector3f randomDir(distribution_xz(generator), distribution_y(generator), distribution_xz(generator));
-            randomDir.normalize();
+PhotonEmitter::PhotonEmitter(const Light& lightSource, float angle)
+    : light(lightSource), cutoffAngle(angle) {}
 
-            //std::cout << "Random Dir: " << randomDir.transpose() << std::endl;  // Debug print the direction
+std::vector<Photon> PhotonEmitter::emitPhotons(int numPhotons) const {
+    std::vector<Photon> photonMap;
+    photonMap.reserve(numPhotons);
 
-            Photon photon(light.position, randomDir, light.intensity);
-            
-            //std::cout << "Photon Position: " << photon.position.transpose() << " Intensity: " << photon.energy.transpose() << std::endl;  // Print photon details
-            
-            Eigen::Vector3f hitPoint;
-            if (scene.trace(photon, hitPoint)) {
-                photonMap.push_back(photon);  // Store photon if it hits the scene
-                //std::cout << "Photon hit at: " << hitPoint.transpose() << std::endl;  // Debug successful hit
-            }
-        }
+    // Setup random number generation
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dist(0.0f, 1.0f);
+
+    float cosCutoff = std::cos(cutoffAngle * M_PI / 180.0f); // Convert angle to radians and then to cosine
+
+    for (int i = 0; i < numPhotons; ++i) {
+        float u = dist(gen) * 2.0f - 1.0f; // Random value between -1 and 1
+        float v = dist(gen) * (1.0f - cosCutoff) + cosCutoff; // Random value in the range [cosCutoff, 1]
+        float theta = std::acos(v); // Inverse cosine to get the angle
+        float phi = 2.0f * M_PI * u; // Full circle
+
+        Eigen::Vector3f localDir(
+            std::sin(theta) * std::cos(phi),
+            std::sin(theta) * std::sin(phi),
+            std::cos(theta)
+        );
+
+        // Transform the local direction vector to align with the spotlight's direction
+        Eigen::Vector3f worldDir = transformDirectionFromLocalToWorld(localDir, light.direction.normalized());
+
+        photonMap.emplace_back(light.position, worldDir, light.intensity);
     }
+
+    return photonMap;
+}
+
+Eigen::Vector3f PhotonEmitter::transformDirectionFromLocalToWorld(const Eigen::Vector3f& localDir, const Eigen::Vector3f& spotlightDir) const {
+    Eigen::Quaternionf rotation = Eigen::Quaternionf::FromTwoVectors(Eigen::Vector3f::UnitZ(), spotlightDir);
+    return rotation * localDir;
 }

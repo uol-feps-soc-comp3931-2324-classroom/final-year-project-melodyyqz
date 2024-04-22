@@ -2,17 +2,17 @@
 
 #include "photon.h"
 #include "light.h"
-#include "scene.h"
 #include <vector>
+#include <Eigen/Dense>
 
 class PhotonEmitter {
 public:
-    Scene& scene;
-    std::vector<Light> lights;
+    PhotonEmitter(const Light& lightSource, float angle);
+    std::vector<Photon> emitPhotons(int numPhotons) const;
 
-    PhotonEmitter(Scene& scene, const std::vector<Light>& lights)
-        : scene(scene), lights(lights) {}
+private:
+    Light light;
+    float cutoffAngle;
 
-    void emitPhotons(int numPhotons, std::vector<Photon>& photonMap);
+    Eigen::Vector3f transformDirectionFromLocalToWorld(const Eigen::Vector3f& localDir, const Eigen::Vector3f& spotlightDir) const;
 };
-
