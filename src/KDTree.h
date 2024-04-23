@@ -1,0 +1,27 @@
+#pragma once// KDTree.h
+#pragma once
+#include "Photon.h"
+#include <vector>
+#include <memory>
+#include <algorithm>
+
+struct KDTreeNode {
+    Photon photon;
+    std::unique_ptr<KDTreeNode> left;
+    std::unique_ptr<KDTreeNode> right;
+    int axis;  // 0 for x, 1 for y, 2 for z
+
+    KDTreeNode(const Photon& ph, int ax) : photon(ph), axis(ax) {}
+};
+
+class KDTree {
+public:
+    std::unique_ptr<KDTreeNode> root;
+
+    void build(const std::vector<Photon>& photons) {
+        root = buildRecursive(photons, 0, photons.size(), 0);
+    }
+
+    std::unique_ptr<KDTreeNode> buildRecursive(const std::vector<Photon>& photons, size_t start, size_t end, int depth);
+};
+
