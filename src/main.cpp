@@ -162,7 +162,7 @@ int main() {
 
     // Trace photons
     int hitCount = 0;
-    for (auto& photon : photons) {
+    /*for (auto& photon : photons) {
         Eigen::Vector3f hitPoint;
         std::cout << "Tracing photon from position: " << photon.position.transpose()
             << " with direction: " << photon.direction.transpose() << std::endl;
@@ -172,6 +172,13 @@ int main() {
         }
         else {
             std::cout << "Photon missed any geometry." << std::endl;
+        }
+    }*/
+    for (auto& photon : photons) {
+        std::cout << "Tracing photon from position: " << photon.position.transpose()
+            << " with direction: " << photon.direction.transpose() << std::endl;
+        if (scene.tracePhoton(photon)) { // Make sure to use 'tracePhoton' if that's what you implemented
+            hitCount++;
         }
     }
     std::cout << "Hit count: " << hitCount << std::endl;
