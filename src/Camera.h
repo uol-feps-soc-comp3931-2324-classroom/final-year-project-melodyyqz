@@ -26,13 +26,18 @@ public:
 	int height;
 	float speed = 0.1f;
 	float sensitivity = 100.0f;
+	float FOVdeg = 45.0f;
 
 	// Constructor
-	Camera(int width, int height, glm::vec3 position);
+	Camera(int width, int height, glm::vec3 position, float initialFOV = 45.0f);
 
 	// Updates and exports the camera matrix to the Vertex Shader
 	void Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shader, const char* uniform);
 	// Camera inputs
 	void Inputs(GLFWwindow* window);
+	// Set direction to look at
+	void setLookAt(const glm::vec3& target);
+	// Adjust fov
+	void adjustFOV(float offset);
 };
 #endif

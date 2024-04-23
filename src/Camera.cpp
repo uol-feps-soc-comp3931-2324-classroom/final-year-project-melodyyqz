@@ -1,6 +1,8 @@
 #include"Camera.h"
+#include <glm/gtx/transform.hpp>
 
-Camera::Camera(int width, int height, glm::vec3 position)
+Camera::Camera(int width, int height, glm::vec3 position, float initialFOV)
+	: FOVdeg(initialFOV) 
 {
 	Camera::width = width;
 	Camera::height = height;
@@ -20,8 +22,6 @@ void Camera::Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shade
 	// Exports camera matrix to vertex shader
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, uniform), 1, GL_FALSE, glm::value_ptr(projection * view));
 }
-
-
 
 void Camera::Inputs(GLFWwindow* window)
 {
@@ -57,6 +57,15 @@ void Camera::Inputs(GLFWwindow* window)
 	else if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE)
 	{
 		speed = 0.1f;
+	}
+	
+	// FOV adjustments
+	// FOV adjustments
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+		adjustFOV(1.0f);
+	}
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+		adjustFOV(-1.0f);
 	}
 
 
@@ -102,4 +111,15 @@ void Camera::Inputs(GLFWwindow* window)
 		// Makes sure the next time the camera looks around it doesn't jump
 		firstClick = true;
 	}
+
+}
+
+void Camera::setLookAt(const glm::vec3& target) {
+	Orientation = glm::normalize(target - Position);
+}
+
+void Camera::adjustFOV(float offset) {
+	FOVdeg += offset;
+	if (FOVdeg < 1.0f) FOVdeg = 1.0f; // prevent the FOV from becoming too narrow
+	if (FOVdeg > 120.0f) FOVdeg = 120.0f; // prevent the FOV from becoming too wide
 }

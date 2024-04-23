@@ -1,1 +1,10 @@
-﻿  prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe
+﻿  Camera.cpp
+  main.cpp
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(53,49): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(53,40): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(53,31): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(54,39): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(54,30): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(173,59): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Generating Code...
+  prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe

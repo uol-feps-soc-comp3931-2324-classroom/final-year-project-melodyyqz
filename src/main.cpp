@@ -29,6 +29,7 @@ const unsigned int height = 800;
 
 
 int main() {
+    // Initialize GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -48,6 +49,17 @@ int main() {
 	}
     glfwMakeContextCurrent(window);
 
+    // Scene bounds and setup
+    Eigen::Vector3f sceneMin(-70.6287, 4.8162, -75.8837);
+    Eigen::Vector3f sceneMax(58.9128, 186.401, 0);
+
+    Eigen::Vector3f sceneCenter = (sceneMax + sceneMin) / 2;
+    Eigen::Vector3f objectDimensions = (sceneMax - sceneMin) / 4;  // Adjust size as needed
+
+    glm::vec3 objectPosition = glm::vec3(sceneCenter.x(), sceneCenter.y(), sceneCenter.z());
+    glm::vec3 cameraPosition = glm::vec3(sceneCenter.x(), sceneCenter.y() + 100, sceneCenter.z() + 150);
+    Eigen::Vector3f lightPosition = Eigen::Vector3f(cameraPosition.x, cameraPosition.y - 10, cameraPosition.z - 50);
+
     // Load GLAD
     gladLoadGL();
     glViewport(0, 0, width, height);
@@ -63,8 +75,7 @@ int main() {
 
 
     // Initialise model
-    glm::mat4 model = glm::mat4(1.0f);
-    model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), objectPosition);
 
     VAO VAO1;
     VAO1.Bind();
@@ -109,19 +120,37 @@ int main() {
     glDisable(GL_CULL_FACE);
 
     // Camera, light, and photon emitter setup
-    Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
-    Light light(Eigen::Vector3f(0.0f, 5.0f, 5.0f), Eigen::Vector3f(0.0f, -1.0f, -1.0f), Eigen::Vector3f(1.0f, 1.0f, 1.0f));
+    Camera camera(width, height, cameraPosition, 45.0f);
+    //camera.setLookAt(glm::vec3(sceneCenter.x(), sceneCenter.y(), sceneCenter.z()));
+    Eigen::Vector3f lightDirection = (sceneCenter - lightPosition).normalized();
+    Light light(lightPosition, lightDirection, Eigen::Vector3f(1.0f, 1.0f, 1.0f));
     PhotonEmitter emitter(light, 30.0f);
 
     // Emit photons
-    std::vector<Photon> photonMap = emitter.emitPhotons(1000);  // Emit 1000 photons
+    std::vector<Photon> photons = emitter.emitPhotons(1000);  // Emit 1000 photons
 
-    std::cout << "Emitted " << photonMap.size() << " photons." << std::endl;
-    for (const auto& photon : photonMap) {
+    std::cout << "Emitted " << photons.size() << " photons." << std::endl;
+    for (const auto& photon : photons) {
         std::cout << "Photon Position: " << photon.position.transpose()
             << ", Direction: " << photon.direction.transpose()
             << ", Energy: " << photon.energy.transpose() << std::endl;
     }
+
+    // Trace photons
+    int hitCount = 0;
+    for (auto& photon : photons) {
+        Eigen::Vector3f hitPoint;
+        std::cout << "Tracing photon from position: " << photon.position.transpose()
+            << " with direction: " << photon.direction.transpose() << std::endl;
+        if (scene.trace(photon, hitPoint)) {
+            std::cout << "Photon hit at: " << hitPoint.transpose() << std::endl;
+            hitCount++;
+        }
+        else {
+            std::cout << "Photon missed any geometry." << std::endl;
+        }
+    }
+    std::cout << "Hit count: " << hitCount << std::endl;
 
     // Don't close window instantly
     while (!glfwWindowShouldClose(window)) {
