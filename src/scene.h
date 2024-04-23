@@ -124,13 +124,16 @@ public:
             Eigen::Vector3f hitPoint = photon.position + photon.direction * rayHit.ray.tfar;
             MaterialProperties mat = getMaterialProperties(hitPoint);
             std::cout << "Hit point: " << hitPoint.transpose() << std::endl;
+            
+            bool result = true;
+
             if (shouldReflect(mat)) {
                 Eigen::Vector3f newDirection = reflect(photon.direction, getNormalAt(hitPoint));
                 photon.direction = newDirection;  // Assumed direction is not const
                 photon.position = hitPoint;
                 photon.energy = (photon.energy.array() * mat.reflectance.array()).matrix();  // Assumed energy is not const
                 if (photon.energy.norm() > energyThreshold) {
-                    return tracePhoton(photon);
+                    result =  tracePhoton(photon);
                 }
             }
             else if (shouldTransmit(mat)) {
@@ -139,9 +142,10 @@ public:
                 photon.position = hitPoint;
                 photon.energy = (photon.energy.array() * mat.transmittance.array()).matrix();
                 if (photon.energy.norm() > energyThreshold) {
-                    return tracePhoton(photon);
+                    result = tracePhoton(photon);
                 }
             }
+            return result;
         }  
         return false;
     }

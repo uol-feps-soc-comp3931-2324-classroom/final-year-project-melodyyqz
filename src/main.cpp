@@ -151,7 +151,7 @@ int main() {
     PhotonEmitter emitter(light, 30.0f);
 
     // Emit photons
-    std::vector<Photon> photons = emitter.emitPhotons(300);  // Emit 1000 photons
+    std::vector<Photon> photons = emitter.emitPhotons(30);  // Emit 1000 photons
 
     std::cout << "Emitted " << photons.size() << " photons." << std::endl;
     for (const auto& photon : photons) {
