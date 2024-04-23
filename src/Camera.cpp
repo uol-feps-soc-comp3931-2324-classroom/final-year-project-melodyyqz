@@ -1,8 +1,7 @@
 #include"Camera.h"
 #include <glm/gtx/transform.hpp>
 
-Camera::Camera(int width, int height, glm::vec3 position, float initialFOV)
-	: FOVdeg(initialFOV) 
+Camera::Camera(int width, int height, glm::vec3 position)
 {
 	Camera::width = width;
 	Camera::height = height;
@@ -61,12 +60,12 @@ void Camera::Inputs(GLFWwindow* window)
 	
 	// FOV adjustments
 	// FOV adjustments
-	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-		adjustFOV(1.0f);
-	}
-	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-		adjustFOV(-1.0f);
-	}
+	//if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+	//	adjustFOV(1.0f);
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+	//	adjustFOV(-1.0f);
+	//}
 
 
 	// Mouse inputs

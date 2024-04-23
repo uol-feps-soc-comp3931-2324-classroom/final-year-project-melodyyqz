@@ -6,6 +6,9 @@
 #include <embree3/rtcore.h>
 #include <embree3/rtcore_common.h>
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <limits>
 #include "simple_mesh.hpp"
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -26,6 +29,26 @@
 // Window dimensions
 const unsigned int width = 800;
 const unsigned int height = 800;
+
+glm::vec3 calculateMeshCentroid(const SimpleMeshData& mesh) {
+    glm::vec3 centroid = glm::vec3(0.0f);
+    int count = 0;
+    for (const auto& vertex : mesh.positions) {
+        centroid += glm::vec3(vertex.x, vertex.y, vertex.z);
+        count++;
+    }
+    if (count > 0) {
+        centroid /= float(count);
+    }
+    return centroid;
+}
+
+// found mesh centroid is at x: -15.7934, y: 76.1911, z: -0.0502528
+void printMeshPosition(const SimpleMeshData& mesh) {
+    glm::vec3 centroid = calculateMeshCentroid(mesh);
+    std::cout << "Mesh centroid is at: "
+        << "x: " << centroid.x << ", y: " << centroid.y << ", z: " << centroid.z << std::endl;
+}
 
 
 int main() {
@@ -49,17 +72,6 @@ int main() {
 	}
     glfwMakeContextCurrent(window);
 
-    // Scene bounds and setup
-    Eigen::Vector3f sceneMin(-70.6287, 4.8162, -75.8837);
-    Eigen::Vector3f sceneMax(58.9128, 186.401, 0);
-
-    Eigen::Vector3f sceneCenter = (sceneMax + sceneMin) / 2;
-    Eigen::Vector3f objectDimensions = (sceneMax - sceneMin) / 4;  // Adjust size as needed
-
-    glm::vec3 objectPosition = glm::vec3(sceneCenter.x(), sceneCenter.y(), sceneCenter.z());
-    glm::vec3 cameraPosition = glm::vec3(sceneCenter.x(), sceneCenter.y() + 100, sceneCenter.z() + 150);
-    Eigen::Vector3f lightPosition = Eigen::Vector3f(cameraPosition.x, cameraPosition.y - 10, cameraPosition.z - 50);
-
     // Load GLAD
     gladLoadGL();
     glViewport(0, 0, width, height);
@@ -75,7 +87,11 @@ int main() {
 
 
     // Initialise model
-    glm::mat4 model = glm::translate(glm::mat4(1.0f), objectPosition);
+    //glm::mat4 model = glm::translate(glm::mat4(1.0f), objectPosition);
+    glm::mat4 model = glm::mat4(1.0f);
+    // Scale it down
+    float scale = 0.1f;
+    model = glm::scale(model, glm::vec3(scale, scale, scale));
 
     VAO VAO1;
     VAO1.Bind();
@@ -84,6 +100,8 @@ int main() {
     SimpleMeshData meshData = load_wavefront_obj("glass-obj.obj");
     scene.addMesh(meshData);
     scene.commitScene();
+
+    glm::vec3 glassCupCentroid = calculateMeshCentroid(meshData);
 
     // Create a contiguous array of GLfloat for positions
     std::vector<GLfloat> positionData;
@@ -120,14 +138,20 @@ int main() {
     glDisable(GL_CULL_FACE);
 
     // Camera, light, and photon emitter setup
-    Camera camera(width, height, cameraPosition, 45.0f);
+    Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
     //camera.setLookAt(glm::vec3(sceneCenter.x(), sceneCenter.y(), sceneCenter.z()));
-    Eigen::Vector3f lightDirection = (sceneCenter - lightPosition).normalized();
-    Light light(lightPosition, lightDirection, Eigen::Vector3f(1.0f, 1.0f, 1.0f));
+    //Eigen::Vector3f lightDirection = (sceneCenter - lightPosition).normalized();
+    //Light light(lightPosition, lightDirection, Eigen::Vector3f(1.0f, 1.0f, 1.0f));
+    //Light light(Eigen::Vector3f(0.0f, 5.0f, 5.0f), Eigen::Vector3f(0.0f, -1.0f, -1.0f), Eigen::Vector3f(1.0f, 1.0f, 1.0f));
+    Light light(
+        Eigen::Vector3f(glassCupCentroid.x + 10.0f, glassCupCentroid.y + 50.0f, glassCupCentroid.z + 1.0f),
+        Eigen::Vector3f(-0.1f, -1.0f, -0.1f),
+        Eigen::Vector3f(2.0f,2.0f, 2.0f)
+    );
     PhotonEmitter emitter(light, 30.0f);
 
     // Emit photons
-    std::vector<Photon> photons = emitter.emitPhotons(1000);  // Emit 1000 photons
+    std::vector<Photon> photons = emitter.emitPhotons(300);  // Emit 1000 photons
 
     std::cout << "Emitted " << photons.size() << " photons." << std::endl;
     for (const auto& photon : photons) {
@@ -189,3 +213,5 @@ int main() {
 
 }
 // object https://free3d.com/3d-model/glass-6488.html
+
+
