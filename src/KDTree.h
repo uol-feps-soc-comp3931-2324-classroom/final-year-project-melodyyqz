@@ -23,5 +23,8 @@ public:
     }
 
     std::unique_ptr<KDTreeNode> buildRecursive(std::vector<Photon>& photons, size_t start, size_t end, int depth);
+    void query(const Eigen::Vector3f& point, float radius, std::vector<Photon>& result) const;
+private:
+    void queryRecursive(const KDTreeNode* node, const Eigen::Vector3f& point, float radius, std::vector<Photon>& result) const;
 };
 

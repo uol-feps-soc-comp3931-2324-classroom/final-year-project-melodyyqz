@@ -6,6 +6,7 @@
 #include <Eigen/Dense>
 #include <limits>
 #include <Eigen/Geometry>
+#include "KDTree.h"
 #include <iostream> // for debugging only
 
 
@@ -21,6 +22,7 @@ class Scene {
     RTCDevice device;
     RTCScene scene;
     float energyThreshold = 0.01f;
+    KDTree photonMap;
 
 public:
     Scene() {
@@ -150,6 +152,21 @@ public:
         return false;
     }
     
+    Eigen::Vector3f computeCaustics(const Eigen::Vector3f& hitPoint, const Eigen::Vector3f& normal) {
+        Eigen::Vector3f causticContribution(0, 0, 0);
+        float radius = 0.5;  // Define the radius within which to look for photons
+        std::vector<Photon> nearbyPhotons;
+        photonMap.query(hitPoint, radius, nearbyPhotons);
+
+        for (const auto& photon : nearbyPhotons) {
+            // Simplified calculation: This should be replaced with a more accurate model
+            Eigen::Vector3f toPhoton = photon.position - hitPoint;
+            float weight = std::max(0.f, normal.dot(toPhoton.normalized()));
+            causticContribution += photon.energy * weight;
+        }
+
+        return causticContribution;
+    }
 
 };
 

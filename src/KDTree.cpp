@@ -22,3 +22,30 @@ std::unique_ptr<KDTreeNode> KDTree::buildRecursive(std::vector<Photon>& photons,
 
     return node;
 }
+
+void KDTree::query(const Eigen::Vector3f& point, float radius, std::vector<Photon>& result) const {
+    queryRecursive(root.get(), point, radius, result);
+}
+
+void KDTree::queryRecursive(const KDTreeNode* node, const Eigen::Vector3f& point, float radius, std::vector<Photon>& result) const {
+    if (!node) return;
+
+    Eigen::Vector3f diff = point - node->photon.position;
+    if (diff.norm() <= radius) {
+        result.push_back(node->photon);
+    }
+
+    float distance = point[node->axis] - node->photon.position[node->axis];
+    if (distance < 0) {
+        queryRecursive(node->left.get(), point, radius, result);
+        if (std::abs(distance) < radius) {
+            queryRecursive(node->right.get(), point, radius, result);
+        }
+    }
+    else {
+        queryRecursive(node->right.get(), point, radius, result);
+        if (std::abs(distance) < radius) {
+            queryRecursive(node->left.get(), point, radius, result);
+        }
+    }
+}
