@@ -14,6 +14,8 @@ uniform sampler2D tex0;
 uniform vec3 lightPos;
 uniform vec3 viewPos;
 uniform vec3 lightColor;
+uniform vec3 causticsColor;
+//uniform vec3 indirectIllumination;
 
 
 void main()
@@ -35,6 +37,7 @@ void main()
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
     vec3 specular = specularStrength * spec * lightColor;
     
-    vec3 result = ambient + diffuse + specular;
+    //vec3 result = ambient + diffuse + specular + indirectIllumination;
+    vec3 result = ambient + diffuse + specular + vec3(causticsColor);
     FragColor = vec4(result, 0.3);
 }

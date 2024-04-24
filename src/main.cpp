@@ -51,6 +51,22 @@ void printMeshPosition(const SimpleMeshData& mesh) {
         << "x: " << centroid.x << ", y: " << centroid.y << ", z: " << centroid.z << std::endl;
 }
 
+Eigen::Vector3f glmToEigen(const glm::vec3& v) {
+    return Eigen::Vector3f(v.x, v.y, v.z);
+}
+
+GLfloat groundVertices[] = {
+    // Positions           // Normals         // Colors (R, G, B)       // Texture Coords
+    -50.0f, 0.0f, -50.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  0.0f, 0.0f,
+     50.0f, 0.0f, -50.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  1.0f, 0.0f,
+     50.0f, 0.0f,  50.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  1.0f, 1.0f,
+    -50.0f, 0.0f,  50.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  0.0f, 1.0f
+};
+
+GLuint groundIndices[] = {
+    0, 1, 2,  // First Triangle
+    0, 2, 3   // Second Triangle
+};
 
 int main() {
     // Initialize GLFW
@@ -103,6 +119,7 @@ int main() {
     scene.commitScene();
 
     glm::vec3 glassCupCentroid = calculateMeshCentroid(meshData);
+    Eigen::Vector3f glassCupCentroidEigen = glmToEigen(glassCupCentroid);
 
     // Create a contiguous array of GLfloat for positions
     std::vector<GLfloat> positionData;
@@ -135,6 +152,20 @@ int main() {
     VBO_Normals.Unbind();
     EBO1.Unbind();
 
+    VAO VAO_Ground;
+    VAO_Ground.Bind();
+
+    VBO VBO_Ground(groundVertices, sizeof(groundVertices));
+    EBO EBO_Ground(groundIndices, sizeof(groundIndices));
+    VAO_Ground.LinkVBO(VBO_Ground, 0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(GLfloat), (void*)0);  // Positions
+    VAO_Ground.LinkVBO(VBO_Ground, 1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));  // Normals
+    VAO_Ground.LinkVBO(VBO_Ground, 2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));  // Colors
+    VAO_Ground.LinkVBO(VBO_Ground, 3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(GLfloat), (void*)(9 * sizeof(GLfloat)));  // Texture Coordinates
+
+    VAO_Ground.Unbind();
+    VBO_Ground.Unbind();
+    EBO_Ground.Unbind();
+
     //glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
 
@@ -145,14 +176,14 @@ int main() {
     //Light light(lightPosition, lightDirection, Eigen::Vector3f(1.0f, 1.0f, 1.0f));
     //Light light(Eigen::Vector3f(0.0f, 5.0f, 5.0f), Eigen::Vector3f(0.0f, -1.0f, -1.0f), Eigen::Vector3f(1.0f, 1.0f, 1.0f));
     Light light(
-        Eigen::Vector3f(glassCupCentroid.x + 10.0f, glassCupCentroid.y + 50.0f, glassCupCentroid.z + 1.0f),
+        Eigen::Vector3f(glassCupCentroid.x + 10.0f, glassCupCentroid.y + 100.0f, glassCupCentroid.z + 10.0f),
         Eigen::Vector3f(-0.1f, -1.0f, -0.1f),
         Eigen::Vector3f(2.0f,2.0f, 2.0f)
     );
     PhotonEmitter emitter(light, 30.0f);
 
     // Emit photons
-    std::vector<Photon> photons = emitter.emitPhotons(30);  // Emit 1000 photons
+    std::vector<Photon> photons = emitter.emitPhotons(1000);  // Emit 1000 photons
 
     std::cout << "Emitted " << photons.size() << " photons." << std::endl;
     for (const auto& photon : photons) {
@@ -163,18 +194,6 @@ int main() {
 
     // Trace photons
     int hitCount = 0;
-    /*for (auto& photon : photons) {
-        Eigen::Vector3f hitPoint;
-        std::cout << "Tracing photon from position: " << photon.position.transpose()
-            << " with direction: " << photon.direction.transpose() << std::endl;
-        if (scene.trace(photon, hitPoint)) {
-            std::cout << "Photon hit at: " << hitPoint.transpose() << std::endl;
-            hitCount++;
-        }
-        else {
-            std::cout << "Photon missed any geometry." << std::endl;
-        }
-    }*/
     std::vector<Photon> storedPhotons;
     for (auto& photon : photons) {
         std::cout << "Tracing photon from position: " << photon.position.transpose()
@@ -188,6 +207,9 @@ int main() {
     KDTree photonMap;
     photonMap.build(storedPhotons);
 
+    Eigen::Vector3f normal = Eigen::Vector3f(0, 1, 0); // Assuming the normal is upward
+    Eigen::Vector3f causticsEffect = scene.computeCaustics(glassCupCentroidEigen, normal);
+
     // Don't close window instantly
     while (!glfwWindowShouldClose(window)) {
         // Background colour
@@ -195,6 +217,11 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         shaderProgram.Activate();
+
+        // Caustics effect to shader
+        GLint causticsLoc = glGetUniformLocation(shaderProgram.ID, "causticsColor");
+        glUniform3f(causticsLoc, causticsEffect.x(), causticsEffect.y(), causticsEffect.z());
+
         GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
@@ -205,8 +232,16 @@ int main() {
         glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightColor"), light.intensity.x(), light.intensity.y(), light.intensity.z());
         glUniform3f(glGetUniformLocation(shaderProgram.ID, "viewPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 
+        // Draw glass
         VAO1.Bind();
         glDrawElements(GL_TRIANGLES, meshData.indices.size(), GL_UNSIGNED_INT, 0);
+        
+        // Draw the ground plane
+        glm::mat4 groundModel = glm::mat4(1.0f);
+        glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(groundModel));
+        VAO_Ground.Bind();
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
 	}
@@ -216,6 +251,9 @@ int main() {
     VBO_Positions.Delete();
     VBO_Normals.Delete();
     EBO1.Delete();
+    VAO_Ground.Delete();
+    VBO_Ground.Delete();
+    EBO_Ground.Delete();
     shaderProgram.Delete();
     embreeManager.release();
     // Cleanup window

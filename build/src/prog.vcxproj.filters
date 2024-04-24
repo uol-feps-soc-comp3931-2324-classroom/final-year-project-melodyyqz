@@ -63,7 +63,9 @@
     <ClInclude Include="..\..\src\scene.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\KDTree.h" />
+    <ClInclude Include="..\..\src\KDTree.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\CMakeLists.txt" />

@@ -1,5 +1,6 @@
 // KDTree.cpp
 #include "KDTree.h"
+#include "photon.h"
 #include <iostream>
 
 std::unique_ptr<KDTreeNode> KDTree::buildRecursive(std::vector<Photon>& photons, size_t start, size_t end, int depth) {
@@ -49,3 +50,11 @@ void KDTree::queryRecursive(const KDTreeNode* node, const Eigen::Vector3f& point
         }
     }
 }
+
+/*std::vector<Photon> KDTree::extractRelevantPhotons(const Camera& camera) {
+    std::vector<Photon> relevantPhotons;
+    Eigen::Vector3f searchPoint = camera.getPosition();
+    float searchRadius = calculateAppropriateRadius();  // Define this function based on your scene's scale
+    this->query(searchPoint, searchRadius, relevantPhotons);
+    return relevantPhotons;
+}*/
