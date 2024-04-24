@@ -333,6 +333,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\KDTree.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\Camera.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.cpp" />
@@ -348,6 +349,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="glad.c" />
     <ClInclude Include="..\..\src\Camera.h" />
     <ClInclude Include="..\..\src\embree_manager.h" />
+    <ClInclude Include="..\..\src\KDTree.h" />
     <ClInclude Include="..\..\src\light.h" />
     <ClInclude Include="..\..\src\photon.h" />
     <ClInclude Include="..\..\src\photon_emitter.h" />

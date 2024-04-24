@@ -1,7 +1,8 @@
 // KDTree.cpp
 #include "KDTree.h"
+#include <iostream>
 
-std::unique_ptr<KDTreeNode> KDTree::buildRecursive(const std::vector<Photon>& photons, size_t start, size_t end, int depth) {
+std::unique_ptr<KDTreeNode> KDTree::buildRecursive(std::vector<Photon>& photons, size_t start, size_t end, int depth) {
     if (start >= end) return nullptr;
     size_t length = end - start;
     size_t median = start + length / 2;
@@ -13,6 +14,9 @@ std::unique_ptr<KDTreeNode> KDTree::buildRecursive(const std::vector<Photon>& ph
         });
 
     std::unique_ptr<KDTreeNode> node = std::make_unique<KDTreeNode>(photons[median], axis);
+    
+    std::cout << "Building Node - Axis: " << axis << ", Photon Position: " << photons[median].position.transpose() << std::endl;
+    
     node->left = buildRecursive(photons, start, median, depth + 1);
     node->right = buildRecursive(photons, median + 1, end, depth + 1);
 

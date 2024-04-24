@@ -25,6 +25,7 @@
 #include "scene.h"
 #include "light.h"
 #include "photon.h"
+#include "KDTree.h"
 
 // Window dimensions
 const unsigned int width = 800;
@@ -174,14 +175,18 @@ int main() {
             std::cout << "Photon missed any geometry." << std::endl;
         }
     }*/
+    std::vector<Photon> storedPhotons;
     for (auto& photon : photons) {
         std::cout << "Tracing photon from position: " << photon.position.transpose()
             << " with direction: " << photon.direction.transpose() << std::endl;
         if (scene.tracePhoton(photon)) { // Make sure to use 'tracePhoton' if that's what you implemented
             hitCount++;
+            storedPhotons.push_back(photon);
         }
     }
     std::cout << "Hit count: " << hitCount << std::endl;
+    KDTree photonMap;
+    photonMap.build(storedPhotons);
 
     // Don't close window instantly
     while (!glfwWindowShouldClose(window)) {

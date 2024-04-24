@@ -18,10 +18,10 @@ class KDTree {
 public:
     std::unique_ptr<KDTreeNode> root;
 
-    void build(const std::vector<Photon>& photons) {
+    void build(std::vector<Photon>& photons) {
         root = buildRecursive(photons, 0, photons.size(), 0);
     }
 
-    std::unique_ptr<KDTreeNode> buildRecursive(const std::vector<Photon>& photons, size_t start, size_t end, int depth);
+    std::unique_ptr<KDTreeNode> buildRecursive(std::vector<Photon>& photons, size_t start, size_t end, int depth);
 };
 
