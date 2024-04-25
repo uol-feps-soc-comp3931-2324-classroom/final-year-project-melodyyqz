@@ -21,10 +21,12 @@ public:
     void build(std::vector<Photon>& photons) {
         root = buildRecursive(photons, 0, photons.size(), 0);
     }
-
+    void addPhoton(const Photon& photon);
     std::unique_ptr<KDTreeNode> buildRecursive(std::vector<Photon>& photons, size_t start, size_t end, int depth);
     void query(const Eigen::Vector3f& point, float radius, std::vector<Photon>& result) const;
 private:
+    std::vector<Photon> photons;
+    void balance();
     void queryRecursive(const KDTreeNode* node, const Eigen::Vector3f& point, float radius, std::vector<Photon>& result) const;
 };
 

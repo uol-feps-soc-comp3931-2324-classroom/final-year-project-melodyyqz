@@ -16,12 +16,17 @@ std::unique_ptr<KDTreeNode> KDTree::buildRecursive(std::vector<Photon>& photons,
 
     std::unique_ptr<KDTreeNode> node = std::make_unique<KDTreeNode>(photons[median], axis);
     
-    std::cout << "Building Node - Axis: " << axis << ", Photon Position: " << photons[median].position.transpose() << std::endl;
+    //std::cout << "Building Node - Axis: " << axis << ", Photon Position: " << photons[median].position.transpose() << std::endl;
     
     node->left = buildRecursive(photons, start, median, depth + 1);
     node->right = buildRecursive(photons, median + 1, end, depth + 1);
 
     return node;
+}
+
+void KDTree::addPhoton(const Photon& photon) {
+	photons.push_back(photon);
+    balance();
 }
 
 void KDTree::query(const Eigen::Vector3f& point, float radius, std::vector<Photon>& result) const {
@@ -48,6 +53,12 @@ void KDTree::queryRecursive(const KDTreeNode* node, const Eigen::Vector3f& point
         if (std::abs(distance) < radius) {
             queryRecursive(node->left.get(), point, radius, result);
         }
+    }
+}
+
+void KDTree::balance() {
+    if (!photons.empty()) {
+		root = buildRecursive(photons, 0, photons.size(), 0);
     }
 }
 

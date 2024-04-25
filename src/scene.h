@@ -59,6 +59,14 @@ public:
 		rtcCommitScene(scene);
 	}
 
+    bool isGround(const Eigen::Vector3f& hitPoint) const {
+        float groundLevel = 0.0f;
+        float epsilon = 0.01f;
+        bool isGround = std::abs(hitPoint.y() - groundLevel) < epsilon;
+        std::cout << "Checking ground at y = " << hitPoint.y() << ": " << (isGround ? "Is ground" : "Not ground") << std::endl;
+        return std::abs(hitPoint.y() - groundLevel) < epsilon;
+	}
+
     bool shouldReflect(const MaterialProperties& mat) {
         return mat.reflectance.norm() > 0.0f;
     }
@@ -125,9 +133,15 @@ public:
         if (rayHit.hit.geomID != RTC_INVALID_GEOMETRY_ID) {
             Eigen::Vector3f hitPoint = photon.position + photon.direction * rayHit.ray.tfar;
             MaterialProperties mat = getMaterialProperties(hitPoint);
-            std::cout << "Hit point: " << hitPoint.transpose() << std::endl;
+            //std::cout << "Hit point: " << hitPoint.transpose() << std::endl;
             
             bool result = true;
+
+            if (isGround(hitPoint)) {
+				photonMap.addPhoton(photon);
+                std::cout << "Photon hit ground at: " << hitPoint.transpose() << std::endl;
+                return false;
+			}
 
             if (shouldReflect(mat)) {
                 Eigen::Vector3f newDirection = reflect(photon.direction, getNormalAt(hitPoint));
@@ -154,7 +168,7 @@ public:
     
     Eigen::Vector3f computeCaustics(const Eigen::Vector3f& hitPoint, const Eigen::Vector3f& normal) {
         Eigen::Vector3f causticContribution(0, 0, 0);
-        float radius = 0.5;  // Define the radius within which to look for photons
+        float radius = 0.5; 
         std::vector<Photon> nearbyPhotons;
         photonMap.query(hitPoint, radius, nearbyPhotons);
 

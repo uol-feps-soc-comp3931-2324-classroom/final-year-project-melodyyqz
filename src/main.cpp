@@ -68,6 +68,19 @@ GLuint groundIndices[] = {
     0, 2, 3   // Second Triangle
 };
 
+std::vector<Eigen::Vector3f> generateGroundPoints(int resolution = 10) {
+    std::vector<Eigen::Vector3f> points;
+    float step = 100.0f / resolution;  // ground extends from -50 to +50, so width is 100
+    for (int i = 0; i <= resolution; ++i) {
+        for (int j = 0; j <= resolution; ++j) {
+            float x = -50 + i * step;
+            float z = -50 + j * step;
+            points.emplace_back(x, 0.0f, z);  // y is 0 as ground plane is at y = 0
+        }
+    }
+    return points;
+}
+
 int main() {
     // Initialize GLFW
     glfwInit();
@@ -115,8 +128,8 @@ int main() {
 
     // Load object
     SimpleMeshData meshData = load_wavefront_obj("glass-obj.obj");
-    scene.addMesh(meshData);
-    scene.commitScene();
+    //scene.addMesh(meshData);
+    //scene.commitScene();
 
     glm::vec3 glassCupCentroid = calculateMeshCentroid(meshData);
     Eigen::Vector3f glassCupCentroidEigen = glmToEigen(glassCupCentroid);
@@ -176,7 +189,7 @@ int main() {
     //Light light(lightPosition, lightDirection, Eigen::Vector3f(1.0f, 1.0f, 1.0f));
     //Light light(Eigen::Vector3f(0.0f, 5.0f, 5.0f), Eigen::Vector3f(0.0f, -1.0f, -1.0f), Eigen::Vector3f(1.0f, 1.0f, 1.0f));
     Light light(
-        Eigen::Vector3f(glassCupCentroid.x + 10.0f, glassCupCentroid.y + 100.0f, glassCupCentroid.z + 10.0f),
+        Eigen::Vector3f(glassCupCentroid.x + 10.0f, glassCupCentroid.y + 10.0f, glassCupCentroid.z + 10.0f),
         Eigen::Vector3f(-0.1f, -1.0f, -0.1f),
         Eigen::Vector3f(2.0f,2.0f, 2.0f)
     );
@@ -187,8 +200,9 @@ int main() {
 
     std::cout << "Emitted " << photons.size() << " photons." << std::endl;
     for (const auto& photon : photons) {
+        Eigen::Vector3f normalizedDirection = photon.direction.normalized();
         std::cout << "Photon Position: " << photon.position.transpose()
-            << ", Direction: " << photon.direction.transpose()
+            << ", Direction: " << normalizedDirection.transpose()
             << ", Energy: " << photon.energy.transpose() << std::endl;
     }
 
@@ -233,12 +247,22 @@ int main() {
         glUniform3f(glGetUniformLocation(shaderProgram.ID, "viewPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 
         // Draw glass
-        VAO1.Bind();
-        glDrawElements(GL_TRIANGLES, meshData.indices.size(), GL_UNSIGNED_INT, 0);
+        //VAO1.Bind();
+        //glDrawElements(GL_TRIANGLES, meshData.indices.size(), GL_UNSIGNED_INT, 0);
         
         // Draw the ground plane
         glm::mat4 groundModel = glm::mat4(1.0f);
         glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(groundModel));
+        // Calculate caustics for multiple points on the ground and pass them to the shader
+        Eigen::Vector3f groundNormal(0, 1, 0); // Assuming the ground plane is aligned with the XY plane
+        std::vector<Eigen::Vector3f> groundPoints = generateGroundPoints(); // Implement this based on your ground geometry
+        for (const auto& point : groundPoints) {
+            Eigen::Vector3f causticsEffect = scene.computeCaustics(point, groundNormal);
+            // Pass this caustic effect to the shader
+            GLint causticsLoc = glGetUniformLocation(shaderProgram.ID, "causticsColor");
+            glUniform3f(causticsLoc, causticsEffect.x(), causticsEffect.y(), causticsEffect.z());
+        }
+        
         VAO_Ground.Bind();
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         

@@ -1,2 +1,20 @@
-﻿  KDTree.cpp
+﻿  main.cpp
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(80,55): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(80,50): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(80,45): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(81,57): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(81,52): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(81,47): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
   prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe
