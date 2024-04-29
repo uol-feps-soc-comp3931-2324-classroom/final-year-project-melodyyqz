@@ -1,4 +1,3 @@
-#pragma once// KDTree.h
 #pragma once
 #include "Photon.h"
 #include <vector>

@@ -1,4 +1,5 @@
-﻿  main.cpp
+﻿  KDTree.cpp
+  main.cpp
 C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(105,55): warning C4305: 'argument': truncation from 'double' to 'const float'
   (compiling source file '../../src/main.cpp')
   
@@ -18,4 +19,5 @@ C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(106,47): warni
   (compiling source file '../../src/main.cpp')
   
 C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(253,59): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Generating Code...
   prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe

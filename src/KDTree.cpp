@@ -1,7 +1,16 @@
-// KDTree.cpp
 #include "KDTree.h"
 #include "photon.h"
+#include <vector>
 #include <iostream>
+
+struct Point {
+    float x, y, z;
+
+    Point(float x, float y, float z) : x(x), y(y), z(z) {}
+    Eigen::Vector3f toEigen() const {
+		return Eigen::Vector3f(x, y, z);
+	}
+};
 
 std::unique_ptr<KDTreeNode> KDTree::buildRecursive(std::vector<Photon>& photons, size_t start, size_t end, int depth) {
     if (start >= end) return nullptr;
@@ -60,6 +69,14 @@ void KDTree::balance() {
     if (!photons.empty()) {
 		root = buildRecursive(photons, 0, photons.size(), 0);
     }
+}
+
+// Gather photons within radius from a point on a surface
+std::vector<Photon> gatherPhotons(const KDTree& kdTree, const Point& surfacePoint, float radius) {
+    std::vector<Photon> nearbyPhotons;
+    Eigen::Vector3f searchPoint = surfacePoint.toEigen();  
+    kdTree.query(searchPoint, radius, nearbyPhotons); 
+    return nearbyPhotons;
 }
 
 /*std::vector<Photon> KDTree::extractRelevantPhotons(const Camera& camera) {
