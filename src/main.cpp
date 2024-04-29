@@ -115,7 +115,8 @@ int main() {
     Shader shaderProgram("default.vert", "default.frag");
     //glEnable(GL_DEPTH_TEST);
 
-
+    scene.addGroundPlane();
+    scene.commitScene();
     // Initialise model
     //glm::mat4 model = glm::translate(glm::mat4(1.0f), objectPosition);
     glm::mat4 model = glm::mat4(1.0f);
@@ -128,8 +129,8 @@ int main() {
 
     // Load object
     SimpleMeshData meshData = load_wavefront_obj("glass-obj.obj");
-    //scene.addMesh(meshData);
-    //scene.commitScene();
+    scene.addMesh(meshData);
+    scene.commitScene();
 
     glm::vec3 glassCupCentroid = calculateMeshCentroid(meshData);
     Eigen::Vector3f glassCupCentroidEigen = glmToEigen(glassCupCentroid);
@@ -189,11 +190,11 @@ int main() {
     //Light light(lightPosition, lightDirection, Eigen::Vector3f(1.0f, 1.0f, 1.0f));
     //Light light(Eigen::Vector3f(0.0f, 5.0f, 5.0f), Eigen::Vector3f(0.0f, -1.0f, -1.0f), Eigen::Vector3f(1.0f, 1.0f, 1.0f));
     Light light(
-        Eigen::Vector3f(glassCupCentroid.x + 10.0f, glassCupCentroid.y + 10.0f, glassCupCentroid.z + 10.0f),
+        Eigen::Vector3f(glassCupCentroid.x + 10.0f, glassCupCentroid.y + 20.0f, glassCupCentroid.z),
         Eigen::Vector3f(-0.1f, -1.0f, -0.1f),
         Eigen::Vector3f(2.0f,2.0f, 2.0f)
     );
-    PhotonEmitter emitter(light, 30.0f);
+    PhotonEmitter emitter(light, 90.0f);
 
     // Emit photons
     std::vector<Photon> photons = emitter.emitPhotons(1000);  // Emit 1000 photons
@@ -218,6 +219,7 @@ int main() {
         }
     }
     std::cout << "Hit count: " << hitCount << std::endl;
+    std::cout << "Ground hit count: " << scene.getGroundPhotonCount() << std::endl;
     KDTree photonMap;
     photonMap.build(storedPhotons);
 
@@ -247,8 +249,8 @@ int main() {
         glUniform3f(glGetUniformLocation(shaderProgram.ID, "viewPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 
         // Draw glass
-        //VAO1.Bind();
-        //glDrawElements(GL_TRIANGLES, meshData.indices.size(), GL_UNSIGNED_INT, 0);
+        VAO1.Bind();
+        glDrawElements(GL_TRIANGLES, meshData.indices.size(), GL_UNSIGNED_INT, 0);
         
         // Draw the ground plane
         glm::mat4 groundModel = glm::mat4(1.0f);

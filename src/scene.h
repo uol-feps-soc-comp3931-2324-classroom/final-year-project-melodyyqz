@@ -23,9 +23,10 @@ class Scene {
     RTCScene scene;
     float energyThreshold = 0.01f;
     KDTree photonMap;
+    int groundPhotonCount;
 
 public:
-    Scene() {
+    Scene() : groundPhotonCount(0) {
         device = rtcNewDevice(nullptr);
         scene = rtcNewScene(device);
     }
@@ -53,6 +54,30 @@ public:
         //    << "] to ["
         //    << bounds.upper_x << ", " << bounds.upper_y << ", " << bounds.upper_z
         //    << "]" << std::endl;
+	}
+
+    void addGroundPlane(){
+        float groundSize = 50.0f;
+        std::vector<Eigen::Vector3f> positions = {
+            { -groundSize, 0.0f, -groundSize },
+            {  groundSize, 0.0f, -groundSize },
+            {  groundSize, 0.0f,  groundSize },
+            { -groundSize, 0.0f,  groundSize }
+        };
+        std::vector<unsigned int> indices = {
+            0, 1, 2, 
+            2, 3, 0   
+        };
+        // New geometry for the ground plane
+        RTCGeometry geom = rtcNewGeometry(device, RTC_GEOMETRY_TYPE_TRIANGLE);
+        rtcSetSharedGeometryBuffer(geom, RTC_BUFFER_TYPE_VERTEX, 0, RTC_FORMAT_FLOAT3, positions.data(), 0, sizeof(Eigen::Vector3f), 4);
+        rtcSetSharedGeometryBuffer(geom, RTC_BUFFER_TYPE_INDEX, 0, RTC_FORMAT_UINT3, indices.data(), 0, sizeof(unsigned int), 2);
+
+        // Commit geometry to the scene
+        rtcCommitGeometry(geom);
+        rtcAttachGeometry(scene, geom);
+        rtcReleaseGeometry(geom);
+        rtcCommitScene(scene);
 	}
 
     void commitScene() {
@@ -84,17 +109,24 @@ public:
     }
 
     Eigen::Vector3f reflect(const Eigen::Vector3f& incident, const Eigen::Vector3f& normal) {
+        // Reflection formula: R = I - 2 * (I . N) * N
         return incident - 2 * incident.dot(normal) * normal;
     }
 
     Eigen::Vector3f refract(const Eigen::Vector3f& incident, const Eigen::Vector3f& normal, float eta) {
+        // Uses Snell's Law to calculate refraction direction
+        // Refraction formula: T = eta * I + (eta * cosi - sqrt(1 - eta^2 * (1 - cosi^2))) * N
+        // Compute cosine of angle between incident ray and normal
         float cosi = -std::max(-1.0f, std::min(1.0f, incident.dot(normal)));
         float etai = 1, etat = eta;
         Eigen::Vector3f n = normal;
+        // Check if ray is inside the object
         if (cosi < 0) { cosi = -cosi; }
         else { std::swap(etai, etat); n = -normal; }
         eta = etai / etat;
+        // Discriminant of Snell's Law equation
         float k = 1 - eta * eta * (1 - cosi * cosi);
+        // Refracted ray direction
         return k < 0 ? Eigen::Vector3f(0, 0, 0) : eta * incident + (eta * cosi - sqrtf(k)) * n;
     }
 
@@ -138,6 +170,7 @@ public:
             bool result = true;
 
             if (isGround(hitPoint)) {
+                groundPhotonCount++;
 				photonMap.addPhoton(photon);
                 std::cout << "Photon hit ground at: " << hitPoint.transpose() << std::endl;
                 return false;
@@ -145,8 +178,10 @@ public:
 
             if (shouldReflect(mat)) {
                 Eigen::Vector3f newDirection = reflect(photon.direction, getNormalAt(hitPoint));
-                photon.direction = newDirection;  // Assumed direction is not const
+                // Set new direction
+                photon.direction = newDirection;
                 photon.position = hitPoint;
+                // Multiply energy by reflectance of material for energy loss
                 photon.energy = (photon.energy.array() * mat.reflectance.array()).matrix();  // Assumed energy is not const
                 if (photon.energy.norm() > energyThreshold) {
                     result =  tracePhoton(photon);
@@ -156,6 +191,7 @@ public:
                 Eigen::Vector3f newDirection = refract(photon.direction, getNormalAt(hitPoint), mat.indexOfRefraction);
                 photon.direction = newDirection;
                 photon.position = hitPoint;
+                // Same as reflection, but with transmittance
                 photon.energy = (photon.energy.array() * mat.transmittance.array()).matrix();
                 if (photon.energy.norm() > energyThreshold) {
                     result = tracePhoton(photon);
@@ -181,6 +217,10 @@ public:
 
         return causticContribution;
     }
+
+    int getGroundPhotonCount() const {
+		return groundPhotonCount;
+	}
 
 };
 
