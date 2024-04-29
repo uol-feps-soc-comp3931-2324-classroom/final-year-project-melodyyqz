@@ -57,10 +57,10 @@ Eigen::Vector3f glmToEigen(const glm::vec3& v) {
 
 GLfloat groundVertices[] = {
     // Positions           // Normals         // Colors (R, G, B)       // Texture Coords
-    -50.0f, 0.0f, -50.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  0.0f, 0.0f,
-     50.0f, 0.0f, -50.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  1.0f, 0.0f,
-     50.0f, 0.0f,  50.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  1.0f, 1.0f,
-    -50.0f, 0.0f,  50.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  0.0f, 1.0f
+    -1000.0f, 0.0f, -1000.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  0.0f, 0.0f,
+     1000.0f, 0.0f, -1000.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  1.0f, 0.0f,
+     50.0f, 0.0f,  1000.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  1.0f, 1.0f,
+    -1000.0f, 0.0f,  1000.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  0.0f, 1.0f
 };
 
 GLuint groundIndices[] = {
@@ -114,9 +114,6 @@ int main() {
     // Create shader program
     Shader shaderProgram("default.vert", "default.frag");
     //glEnable(GL_DEPTH_TEST);
-
-    scene.addGroundPlane();
-    scene.commitScene();
     // Initialise model
     //glm::mat4 model = glm::translate(glm::mat4(1.0f), objectPosition);
     glm::mat4 model = glm::mat4(1.0f);
@@ -130,6 +127,9 @@ int main() {
     // Load object
     SimpleMeshData meshData = load_wavefront_obj("glass-obj.obj");
     scene.addMesh(meshData);
+    scene.commitScene();
+
+    scene.addGroundPlane();
     scene.commitScene();
 
     glm::vec3 glassCupCentroid = calculateMeshCentroid(meshData);
@@ -190,14 +190,14 @@ int main() {
     //Light light(lightPosition, lightDirection, Eigen::Vector3f(1.0f, 1.0f, 1.0f));
     //Light light(Eigen::Vector3f(0.0f, 5.0f, 5.0f), Eigen::Vector3f(0.0f, -1.0f, -1.0f), Eigen::Vector3f(1.0f, 1.0f, 1.0f));
     Light light(
-        Eigen::Vector3f(glassCupCentroid.x + 10.0f, glassCupCentroid.y + 20.0f, glassCupCentroid.z),
-        Eigen::Vector3f(-0.1f, -1.0f, -0.1f),
+        Eigen::Vector3f(glassCupCentroid.x + 10.0f, glassCupCentroid.y + 100.0f, glassCupCentroid.z),
+        Eigen::Vector3f(0.0f, -1.0f, 0.0f),
         Eigen::Vector3f(2.0f,2.0f, 2.0f)
     );
-    PhotonEmitter emitter(light, 90.0f);
+    PhotonEmitter emitter(light, 30.0f);
 
     // Emit photons
-    std::vector<Photon> photons = emitter.emitPhotons(1000);  // Emit 1000 photons
+    std::vector<Photon> photons = emitter.emitPhotons(10000);  // Emit 1000 photons
 
     std::cout << "Emitted " << photons.size() << " photons." << std::endl;
     for (const auto& photon : photons) {

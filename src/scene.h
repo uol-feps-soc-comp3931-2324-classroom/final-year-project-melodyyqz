@@ -57,7 +57,7 @@ public:
 	}
 
     void addGroundPlane(){
-        float groundSize = 50.0f;
+        float groundSize = 1000.0f;
         std::vector<Eigen::Vector3f> positions = {
             { -groundSize, 0.0f, -groundSize },
             {  groundSize, 0.0f, -groundSize },

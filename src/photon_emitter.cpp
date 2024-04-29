@@ -23,8 +23,10 @@ std::vector<Photon> PhotonEmitter::emitPhotons(int numPhotons) const {
     float cosCutoff = std::cos(cutoffAngle * M_PI / 180.0f); // Convert angle to radians and then to cosine
 
     for (int i = 0; i < numPhotons; ++i) {
-        float u = dist(gen) * 2.0f - 1.0f; // Random value between -1 and 1
-        float v = dist(gen) * (1.0f - cosCutoff) + cosCutoff; // Random value in the range [cosCutoff, 1]
+        // Random value between -1 and 1
+        float u = dist(gen) * 2.0f - 1.0f; 
+        // Random value in the range [cosCutoff, 1]
+        float v = dist(gen) * (1.0f - cosCutoff) + cosCutoff;
         float theta = std::acos(v); // Inverse cosine to get the angle
         float phi = 2.0f * M_PI * u; // Full circle
 
