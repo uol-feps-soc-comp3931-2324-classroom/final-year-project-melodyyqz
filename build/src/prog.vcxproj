@@ -334,6 +334,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\KDTree.cpp" />
+    <ClCompile Include="..\..\src\texture.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\Camera.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.cpp" />
     <ClCompile Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.cpp" />
@@ -354,6 +355,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="..\..\src\photon.h" />
     <ClInclude Include="..\..\src\photon_emitter.h" />
     <ClInclude Include="..\..\src\scene.h" />
+    <ClInclude Include="..\..\src\texture.h" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.hpp" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VAO.hpp" />
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\VBO.hpp" />
