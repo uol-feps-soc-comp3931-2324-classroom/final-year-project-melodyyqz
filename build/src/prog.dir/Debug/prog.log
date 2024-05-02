@@ -1,2 +1,21 @@
-﻿  texture.cpp
+﻿  main.cpp
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(105,55): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(105,50): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(105,45): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(106,57): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(106,52): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(106,47): warning C4305: 'argument': truncation from 'double' to 'const float'
+  (compiling source file '../../src/main.cpp')
+  
+C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(260,59): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe

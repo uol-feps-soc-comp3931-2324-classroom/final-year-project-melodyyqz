@@ -26,6 +26,7 @@
 #include "light.h"
 #include "photon.h"
 #include "KDTree.h"
+#include "texture_generator.h"
 
 // Window dimensions
 const unsigned int width = 800;
@@ -185,10 +186,6 @@ int main() {
 
     // Camera, light, and photon emitter setup
     Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
-    //camera.setLookAt(glm::vec3(sceneCenter.x(), sceneCenter.y(), sceneCenter.z()));
-    //Eigen::Vector3f lightDirection = (sceneCenter - lightPosition).normalized();
-    //Light light(lightPosition, lightDirection, Eigen::Vector3f(1.0f, 1.0f, 1.0f));
-    //Light light(Eigen::Vector3f(0.0f, 5.0f, 5.0f), Eigen::Vector3f(0.0f, -1.0f, -1.0f), Eigen::Vector3f(1.0f, 1.0f, 1.0f));
     Light light(
         Eigen::Vector3f(glassCupCentroid.x + 10.0f, glassCupCentroid.y + 100.0f, glassCupCentroid.z),
         Eigen::Vector3f(0.0f, -1.0f, 0.0f),
@@ -197,7 +194,7 @@ int main() {
     PhotonEmitter emitter(light, 30.0f);
 
     // Emit photons
-    std::vector<Photon> photons = emitter.emitPhotons(10000);  // Emit 1000 photons
+    std::vector<Photon> photons = emitter.emitPhotons(1000);  // Emit 1000 photons
 
     std::cout << "Emitted " << photons.size() << " photons." << std::endl;
     for (const auto& photon : photons) {
@@ -223,8 +220,12 @@ int main() {
     KDTree photonMap;
     photonMap.build(storedPhotons);
 
-    Eigen::Vector3f normal = Eigen::Vector3f(0, 1, 0); // Assuming the normal is upward
-    Eigen::Vector3f causticsEffect = scene.computeCaustics(glassCupCentroidEigen, normal);
+    // CAUSTICS CHANGE
+    TextureGenerator causticsTexture(512, 512);
+    causticsTexture.updateTextureWithPhotons(photons);
+
+    //Eigen::Vector3f normal = Eigen::Vector3f(0, 1, 0); // Assuming the normal is upward
+    //Eigen::Vector3f causticsEffect = scene.computeCaustics(glassCupCentroidEigen, normal);
 
     // Don't close window instantly
     while (!glfwWindowShouldClose(window)) {
@@ -235,9 +236,15 @@ int main() {
         shaderProgram.Activate();
 
         // Caustics effect to shader
-        GLint causticsLoc = glGetUniformLocation(shaderProgram.ID, "causticsColor");
-        glUniform3f(causticsLoc, causticsEffect.x(), causticsEffect.y(), causticsEffect.z());
-
+        //GLint causticsLoc = glGetUniformLocation(shaderProgram.ID, "causticsColor");
+        //glUniform3f(causticsLoc, causticsEffect.x(), causticsEffect.y(), causticsEffect.z());
+        // CAUSTICS CHANGE
+        GLuint causticsTextureID = causticsTexture.getTextureID();
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, causticsTextureID);
+        glUniform1i(glGetUniformLocation(shaderProgram.ID, "causticsTexture"), 0);
+        
+        //model = glm::mat4(1.0f);
         GLuint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
@@ -256,14 +263,14 @@ int main() {
         glm::mat4 groundModel = glm::mat4(1.0f);
         glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(groundModel));
         // Calculate caustics for multiple points on the ground and pass them to the shader
-        Eigen::Vector3f groundNormal(0, 1, 0); // Assuming the ground plane is aligned with the XY plane
-        std::vector<Eigen::Vector3f> groundPoints = generateGroundPoints(); // Implement this based on your ground geometry
-        for (const auto& point : groundPoints) {
-            Eigen::Vector3f causticsEffect = scene.computeCaustics(point, groundNormal);
-            // Pass this caustic effect to the shader
-            GLint causticsLoc = glGetUniformLocation(shaderProgram.ID, "causticsColor");
-            glUniform3f(causticsLoc, causticsEffect.x(), causticsEffect.y(), causticsEffect.z());
-        }
+        //Eigen::Vector3f groundNormal(0, 1, 0); // Assuming the ground plane is aligned with the XY plane
+        //std::vector<Eigen::Vector3f> groundPoints = generateGroundPoints(); // Implement this based on your ground geometry
+        //for (const auto& point : groundPoints) {
+        //    Eigen::Vector3f causticsEffect = scene.computeCaustics(point, groundNormal);
+        //    // Pass this caustic effect to the shader
+        //    GLint causticsLoc = glGetUniformLocation(shaderProgram.ID, "causticsColor");
+        //    glUniform3f(causticsLoc, causticsEffect.x(), causticsEffect.y(), causticsEffect.z());
+        //}
         
         VAO_Ground.Bind();
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

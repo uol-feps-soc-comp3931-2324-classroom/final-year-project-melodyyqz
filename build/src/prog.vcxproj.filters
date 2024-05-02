@@ -19,7 +19,7 @@
     </ClCompile>
     <ClCompile Include="glad.c" />
     <ClCompile Include="..\..\src\KDTree.cpp" />
-    <ClCompile Include="..\..\src\texture.cpp" />
+    <ClCompile Include="..\..\src\texture_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\melod\Documents\final-year-project-melodyyqz\src\EBO.hpp" />
@@ -67,7 +67,7 @@
     <ClInclude Include="..\..\src\KDTree.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\texture.h">
+    <ClInclude Include="..\..\src\texture_generator.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
