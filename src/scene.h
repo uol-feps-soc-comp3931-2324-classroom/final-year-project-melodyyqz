@@ -131,8 +131,7 @@ public:
     }
 
     Eigen::Vector3f getNormalAt(const Eigen::Vector3f& hitPoint) {
-        // Placeholder for normal retrieval
-        return Eigen::Vector3f(0, 1, 0);  // Example normal pointing upwards
+        return Eigen::Vector3f(0, 1, 0); 
     }
 
     bool tracePhoton(Photon& photon) {
@@ -202,21 +201,20 @@ public:
         return false;
     }
     
-    Eigen::Vector3f computeCaustics(const Eigen::Vector3f& hitPoint, const Eigen::Vector3f& normal) {
-        Eigen::Vector3f causticContribution(0, 0, 0);
-        float radius = 0.5; 
-        std::vector<Photon> nearbyPhotons;
-        photonMap.query(hitPoint, radius, nearbyPhotons);
+    // Eigen::Vector3f computeCaustics(const Eigen::Vector3f& hitPoint, const Eigen::Vector3f& normal) {
+    //     Eigen::Vector3f causticContribution(0, 0, 0);
+    //     float radius = 0.5; 
+    //     std::vector<Photon> nearbyPhotons;
+    //     photonMap.query(hitPoint, radius, nearbyPhotons);
 
-        for (const auto& photon : nearbyPhotons) {
-            // Simplified calculation: This should be replaced with a more accurate model
-            Eigen::Vector3f toPhoton = photon.position - hitPoint;
-            float weight = std::max(0.f, normal.dot(toPhoton.normalized()));
-            causticContribution += photon.energy * weight;
-        }
+    //     for (const auto& photon : nearbyPhotons) {
+    //         Eigen::Vector3f toPhoton = photon.position - hitPoint;
+    //         float weight = std::max(0.f, normal.dot(toPhoton.normalized()));
+    //         causticContribution += photon.energy * weight;
+    //     }
 
-        return causticContribution;
-    }
+    //     return causticContribution;
+    // }
 
     int getGroundPhotonCount() const {
 		return groundPhotonCount;
