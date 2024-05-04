@@ -2,9 +2,9 @@
 
 // Positions/Coordinates
 layout (location = 0) in vec3 aPos;
-// Colors
+// Normals
 layout (location = 1) in vec3 aNormal;
-// Texture Coordinates
+// Colors
 layout (location = 2) in vec3 aColor;
 // Texture Coordinates
 layout (location = 3) in vec2 aTex;
@@ -22,10 +22,7 @@ void main()
 {
     // Outputs the positions/coordinates of all vertices
     gl_Position = camMatrix * model * vec4(aPos, 1.0);
-    // Assigns the colors from the Vertex Data to "color"
     color = aColor;
-    // Assigns the texture coordinates from the Vertex Data to "texCoord"
     texCoord = aTex;
-    // Assigns the normals from the Vertex Data to "normal"
     normal = aNormal;
 }

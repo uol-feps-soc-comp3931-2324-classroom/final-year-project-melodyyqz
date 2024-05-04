@@ -98,5 +98,11 @@
     <None Include="default.vert">
       <Filter>Assets</Filter>
     </None>
+    <None Include="square.frag">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="square.vert">
+      <Filter>Assets</Filter>
+    </None>
   </ItemGroup>
 </Project>

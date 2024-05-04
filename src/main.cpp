@@ -58,15 +58,42 @@ Eigen::Vector3f glmToEigen(const glm::vec3& v) {
 
 GLfloat groundVertices[] = {
     // Positions           // Normals         // Colors (R, G, B)       // Texture Coords
-    -1000.0f, 0.0f, -1000.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  0.0f, 0.0f,
-     1000.0f, 0.0f, -1000.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  1.0f, 0.0f,
-     50.0f, 0.0f,  1000.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  1.0f, 1.0f,
-    -1000.0f, 0.0f,  1000.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  0.0f, 1.0f
+    -100.0f, 0.0f, -100.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  0.0f, 0.0f,
+     100.0f, 0.0f, -100.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  1.0f, 0.0f,
+     100.0f, 0.0f,  100.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  1.0f, 1.0f,
+    -100.0f, 0.0f,  100.0f,  0.0f, 1.0f, 0.0f,  0.2f, 0.2f, 0.2f,  0.0f, 1.0f
 };
 
 GLuint groundIndices[] = {
     0, 1, 2,  // First Triangle
     0, 2, 3   // Second Triangle
+};
+
+
+// Drawing small squares at pounts where photons hit the ground
+GLfloat cubeVertices[] = {
+    // Positions          
+    -0.05f, 0.0f, -0.05f,  // Bottom Face (4 vertices)
+     0.05f, 0.0f, -0.05f,
+     0.05f, 0.0f,  0.05f,
+    -0.05f, 0.0f,  0.05f,
+
+    -0.05f, 0.1f, -0.05f,  // Top Face (4 vertices)
+     0.05f, 0.1f, -0.05f,
+     0.05f, 0.1f,  0.05f,
+    -0.05f, 0.1f,  0.05f
+};
+
+GLuint cubeIndices[] = {
+    // Bottom face
+    0, 1, 2,  0, 2, 3,
+    // Top face
+    4, 5, 6,  4, 6, 7,
+    // Side faces
+    0, 3, 7,  0, 7, 4,
+    1, 2, 6,  1, 6, 5,
+    3, 2, 6,  3, 6, 7,
+    0, 1, 5,  0, 5, 4
 };
 
 std::vector<Eigen::Vector3f> generateGroundPoints(int resolution = 10) {
@@ -181,6 +208,25 @@ int main() {
     VBO_Ground.Unbind();
     EBO_Ground.Unbind();
 
+    // VAO stuff for smalls quares
+    GLuint cubeVAO, cubeVBO, cubeEBO;
+    glGenVertexArrays(1, &cubeVAO);
+    glGenBuffers(1, &cubeVBO);
+    glGenBuffers(1, &cubeEBO);
+
+    glBindVertexArray(cubeVAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cubeEBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cubeIndices), cubeIndices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindVertexArray(0);
+
     //glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
 
@@ -194,7 +240,7 @@ int main() {
     PhotonEmitter emitter(light, 30.0f);
 
     // Emit photons
-    std::vector<Photon> photons = emitter.emitPhotons(1000);  // Emit 1000 photons
+    std::vector<Photon> photons = emitter.emitPhotons(10000);  // Emit 10000 photons
 
     std::cout << "Emitted " << photons.size() << " photons." << std::endl;
     for (const auto& photon : photons) {
@@ -208,9 +254,9 @@ int main() {
     int hitCount = 0;
     std::vector<Photon> storedPhotons;
     for (auto& photon : photons) {
-        std::cout << "Tracing photon from position: " << photon.position.transpose()
-            << " with direction: " << photon.direction.transpose() << std::endl;
-        if (scene.tracePhoton(photon)) { // Make sure to use 'tracePhoton' if that's what you implemented
+        //std::cout << "Tracing photon from position: " << photon.position.transpose()
+        //    << " with direction: " << photon.direction.transpose() << std::endl;
+        if (scene.tracePhoton(photon)) {
             hitCount++;
             storedPhotons.push_back(photon);
         }
@@ -234,11 +280,28 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         shaderProgram.Activate();
+        GLint alphaLocation = glGetUniformLocation(shaderProgram.ID, "alphaValue");
+
+        // Assuming shaderProgramSquare is the ID of your shader program for squares
+        Shader shaderProgramSquare("square.vert", "square.frag");
+        shaderProgramSquare.Activate(); // Activate the shader
+
+        for (const glm::vec3& photon : scene.groundPhotons) {
+            glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(photon.x, photon.y + 0.1f, photon.z));  // Raise the square by 0.1 units
+            glUniformMatrix4fv(glGetUniformLocation(shaderProgramSquare.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+            camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgramSquare, "camMatrix");
+
+            glBindVertexArray(cubeVAO);
+            glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+        }
+
+        glBindVertexArray(0); // Unbind the VAO
 
         // Caustics effect to shader
         //GLint causticsLoc = glGetUniformLocation(shaderProgram.ID, "causticsColor");
         //glUniform3f(causticsLoc, causticsEffect.x(), causticsEffect.y(), causticsEffect.z());
         // CAUSTICS CHANGE
+        shaderProgram.Activate();
         GLuint causticsTextureID = causticsTexture.getTextureID();
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, causticsTextureID);
@@ -256,10 +319,12 @@ int main() {
         glUniform3f(glGetUniformLocation(shaderProgram.ID, "viewPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 
         // Draw glass
+        glUniform1f(alphaLocation, 0.3f);
         VAO1.Bind();
         glDrawElements(GL_TRIANGLES, meshData.indices.size(), GL_UNSIGNED_INT, 0);
         
         // Draw the ground plane
+        glUniform1f(alphaLocation, 1.0f);
         glm::mat4 groundModel = glm::mat4(1.0f);
         glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(groundModel));
         // Calculate caustics for multiple points on the ground and pass them to the shader

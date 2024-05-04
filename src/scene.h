@@ -24,8 +24,12 @@ class Scene {
     float energyThreshold = 0.01f;
     KDTree photonMap;
     int groundPhotonCount;
+    
 
 public:
+
+    std::vector<glm::vec3> groundPhotons;
+
     Scene() : groundPhotonCount(0) {
         device = rtcNewDevice(nullptr);
         scene = rtcNewScene(device);
@@ -88,7 +92,7 @@ public:
         float groundLevel = 0.0f;
         float epsilon = 0.01f;
         bool isGround = std::abs(hitPoint.y() - groundLevel) < epsilon;
-        std::cout << "Checking ground at y = " << hitPoint.y() << ": " << (isGround ? "Is ground" : "Not ground") << std::endl;
+        //std::cout << "Checking ground at y = " << hitPoint.y() << ": " << (isGround ? "Is ground" : "Not ground") << std::endl;
         return std::abs(hitPoint.y() - groundLevel) < epsilon;
 	}
 
@@ -169,14 +173,16 @@ public:
             
             bool result = true;
 
-            if (isGround(hitPoint)) {
+            if (isGround(hitPoint) && photon.touchGlass == true) {
                 groundPhotonCount++;
 				photonMap.addPhoton(photon);
                 std::cout << "Photon hit ground at: " << hitPoint.transpose() << std::endl;
+                groundPhotons.push_back(glm::vec3(hitPoint.x(), hitPoint.y(), hitPoint.z()));
                 return false;
 			}
 
             if (shouldReflect(mat)) {
+                photon.touchGlass = true;
                 Eigen::Vector3f newDirection = reflect(photon.direction, getNormalAt(hitPoint));
                 // Set new direction
                 photon.direction = newDirection;
@@ -188,6 +194,7 @@ public:
                 }
             }
             else if (shouldTransmit(mat)) {
+                photon.touchGlass = true;
                 Eigen::Vector3f newDirection = refract(photon.direction, getNormalAt(hitPoint), mat.indexOfRefraction);
                 photon.direction = newDirection;
                 photon.position = hitPoint;
