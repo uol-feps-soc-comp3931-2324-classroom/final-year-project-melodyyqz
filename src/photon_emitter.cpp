@@ -20,7 +20,8 @@ std::vector<Photon> PhotonEmitter::emitPhotons(int numPhotons) const {
     std::mt19937 gen(rd());
     std::uniform_real_distribution<float> dist(0.0f, 1.0f);
 
-    float cosCutoff = std::cos(cutoffAngle * M_PI / 180.0f); // Convert angle to radians and then to cosine
+    // Convert angle to radians and then to cosine
+    float cosCutoff = std::cos(cutoffAngle * M_PI / 180.0f); 
 
     for (int i = 0; i < numPhotons; ++i) {
         // Random value between -1 and 1

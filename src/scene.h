@@ -24,8 +24,12 @@ class Scene {
     float energyThreshold = 0.01f;
     KDTree photonMap;
     int groundPhotonCount;
+    
 
 public:
+
+    std::vector<glm::vec3> groundPhotons;
+
     Scene() : groundPhotonCount(0) {
         device = rtcNewDevice(nullptr);
         scene = rtcNewScene(device);
@@ -37,14 +41,17 @@ public:
     }
 
     // Add the object to the scene
-    void addMesh(const SimpleMeshData& mesh) {
+    void addMesh(const SimpleMeshData& mesh, const glm::mat4 &transform) {
 		RTCGeometry geom = rtcNewGeometry(device, RTC_GEOMETRY_TYPE_TRIANGLE);
 		rtcSetSharedGeometryBuffer(geom, RTC_BUFFER_TYPE_VERTEX, 0, RTC_FORMAT_FLOAT3, mesh.positions.data(), 0, sizeof(Eigen::Vector3f), mesh.positions.size());
 		rtcSetSharedGeometryBuffer(geom, RTC_BUFFER_TYPE_INDEX, 0, RTC_FORMAT_UINT3, mesh.indices.data(), 0, sizeof(unsigned int), mesh.indices.size()/3);
+        rtcSetGeometryTransform(geom, 0, RTC_FORMAT_FLOAT4X4_COLUMN_MAJOR, glm::value_ptr(transform));
+
 		rtcCommitGeometry(geom);
 		rtcAttachGeometry(scene, geom);
-		rtcReleaseGeometry(geom);
+		//rtcReleaseGeometry(geom);
         rtcCommitScene(scene);
+
 
         //// Log the scene bounds after committing the scene
         //RTCBounds bounds;
@@ -88,7 +95,7 @@ public:
         float groundLevel = 0.0f;
         float epsilon = 0.01f;
         bool isGround = std::abs(hitPoint.y() - groundLevel) < epsilon;
-        std::cout << "Checking ground at y = " << hitPoint.y() << ": " << (isGround ? "Is ground" : "Not ground") << std::endl;
+        //std::cout << "Checking ground at y = " << hitPoint.y() << ": " << (isGround ? "Is ground" : "Not ground") << std::endl;
         return std::abs(hitPoint.y() - groundLevel) < epsilon;
 	}
 
@@ -131,7 +138,34 @@ public:
     }
 
     Eigen::Vector3f getNormalAt(const Eigen::Vector3f& hitPoint) {
-        return Eigen::Vector3f(0, 1, 0); 
+        return Eigen::Vector3f(0, 1, 0);  
+    }
+
+    Eigen::Vector3f getNormal(const RTCRayHit& rayHit, const SimpleMeshData& mesh) {
+        if (rayHit.hit.geomID == RTC_INVALID_GEOMETRY_ID) {
+            // No valid intersection, return a default normal
+            return Eigen::Vector3f(0, 1, 0);
+        }
+
+        // Vertices of the triangle hit
+        const Vec3f v0 = mesh.positions[mesh.indices[3 * rayHit.hit.primID]];
+        const Vec3f v1 = mesh.positions[mesh.indices[3 * rayHit.hit.primID + 1]];
+        const Vec3f v2 = mesh.positions[mesh.indices[3 * rayHit.hit.primID + 2]];
+
+        // Vertex normals
+        const Vec3f n0 = mesh.normals[3 * rayHit.hit.primID];
+        const Vec3f n1 = mesh.normals[3 * rayHit.hit.primID + 1];
+        const Vec3f n2 = mesh.normals[3 * rayHit.hit.primID + 2];
+
+        // Barycentric coordinates from the ray hit
+        float u = rayHit.hit.u;
+        float v = rayHit.hit.v;
+        float w = 1.0f - u - v;
+
+        // Interpolate normal
+        Vec3f interpolatedNormalVec3 = w * n0 + u * n1 + v * n2;
+        Eigen::Vector3f interpolatedNormal(interpolatedNormalVec3.x, interpolatedNormalVec3.y, interpolatedNormalVec3.z);
+        return interpolatedNormal.normalized();
     }
 
     bool tracePhoton(Photon& photon) {
@@ -164,18 +198,23 @@ public:
         if (rayHit.hit.geomID != RTC_INVALID_GEOMETRY_ID) {
             Eigen::Vector3f hitPoint = photon.position + photon.direction * rayHit.ray.tfar;
             MaterialProperties mat = getMaterialProperties(hitPoint);
-            //std::cout << "Hit point: " << hitPoint.transpose() << std::endl;
+            //if (!isGround(hitPoint))
+            //{
+            //    std::cout << "Hit point: " << hitPoint.transpose() << std::endl;
+            //}
             
-            bool result = true;
+            bool result = false;
 
-            if (isGround(hitPoint)) {
+            if (isGround(hitPoint) && photon.touchGlass == true) {
                 groundPhotonCount++;
 				photonMap.addPhoton(photon);
                 std::cout << "Photon hit ground at: " << hitPoint.transpose() << std::endl;
-                return false;
+                groundPhotons.push_back(glm::vec3(hitPoint.x(), hitPoint.y(), hitPoint.z()));
+                return true;
 			}
 
             if (shouldReflect(mat)) {
+                photon.touchGlass = true;
                 Eigen::Vector3f newDirection = reflect(photon.direction, getNormalAt(hitPoint));
                 // Set new direction
                 photon.direction = newDirection;
@@ -187,6 +226,8 @@ public:
                 }
             }
             else if (shouldTransmit(mat)) {
+                std::cout << "Transmitting photon" << std::endl;
+                photon.touchGlass = true;
                 Eigen::Vector3f newDirection = refract(photon.direction, getNormalAt(hitPoint), mat.indexOfRefraction);
                 photon.direction = newDirection;
                 photon.position = hitPoint;
@@ -201,20 +242,20 @@ public:
         return false;
     }
     
-    // Eigen::Vector3f computeCaustics(const Eigen::Vector3f& hitPoint, const Eigen::Vector3f& normal) {
-    //     Eigen::Vector3f causticContribution(0, 0, 0);
-    //     float radius = 0.5; 
-    //     std::vector<Photon> nearbyPhotons;
-    //     photonMap.query(hitPoint, radius, nearbyPhotons);
+    Eigen::Vector3f computeCaustics(const Eigen::Vector3f& hitPoint, const Eigen::Vector3f& normal) {
+        Eigen::Vector3f causticContribution(0, 0, 0);
+        float radius = 0.5; 
+        std::vector<Photon> nearbyPhotons;
+        photonMap.query(hitPoint, radius, nearbyPhotons);
 
-    //     for (const auto& photon : nearbyPhotons) {
-    //         Eigen::Vector3f toPhoton = photon.position - hitPoint;
-    //         float weight = std::max(0.f, normal.dot(toPhoton.normalized()));
-    //         causticContribution += photon.energy * weight;
-    //     }
+        for (const auto& photon : nearbyPhotons) {
+            Eigen::Vector3f toPhoton = photon.position - hitPoint;
+            float weight = std::max(0.f, normal.dot(toPhoton.normalized()));
+            causticContribution += photon.energy * weight;
+        }
 
-    //     return causticContribution;
-    // }
+        return causticContribution;
+    }
 
     int getGroundPhotonCount() const {
 		return groundPhotonCount;

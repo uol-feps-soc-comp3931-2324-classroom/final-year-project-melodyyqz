@@ -11,10 +11,13 @@
 #include <vector>
 
 SimpleMeshData load_wavefront_obj(char const* aPath) {
+
     auto result = rapidobj::ParseFile(aPath);
     if (result.error) {
-        std::cout << result.error.code.message() << '\n';
-        return{};
+        std::cerr << "Error parsing OBJ file: " << result.error.code.message() << '\n';
+        std::cerr << "Error at line: " << result.error.line << '\n';  // If available
+       // std::cout << "Attempting to load MTL file from: " << resolvedPath << std::endl;
+        return {};
     }
 
     rapidobj::Triangulate(result);
@@ -26,9 +29,10 @@ SimpleMeshData load_wavefront_obj(char const* aPath) {
     std::vector<Vec3f> sequentialNormals;
 
     for (const auto& shape : result.shapes) {
-        for (const auto& idx : shape.mesh.indices) {
+        //for (const auto& idx : shape.mesh.indices) {
+        for (int i = 0; i < shape.mesh.indices.size(); i++) {
             int positionIndex = -1;
-
+            const auto& idx = shape.mesh.indices[i];
             // Process position index
             if (positionIndexMapping.find(idx.position_index) == positionIndexMapping.end()) {
                 positionIndex = sequentialPositions.size();
@@ -42,6 +46,7 @@ SimpleMeshData load_wavefront_obj(char const* aPath) {
                     });
             }
             else {
+                //std::cout << "Index already processed: " << idx.position_index << std::endl;
                 positionIndex = positionIndexMapping[idx.position_index];
             }
 
@@ -64,7 +69,7 @@ SimpleMeshData load_wavefront_obj(char const* aPath) {
     }
 
     ret.positions = sequentialPositions;
-    ret.normals = sequentialNormals; // This should now be aligned properlyContinue to process normals and any other attributes similarly, if necessary
+    ret.normals = sequentialNormals;
 
     std::cout << "Processed " << ret.indices.size() << " indices, "
         << ret.positions.size() << " positions, and "

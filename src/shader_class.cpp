@@ -12,7 +12,7 @@ std::string get_file_contents(const char* filename)
 		in.seekg(0, std::ios::beg);
 		in.read(&contents[0], contents.size());
 		in.close();
-		printf("File %s read successfully\n", filename);
+		//printf("File %s read successfully\n", filename);
 		return(contents);
 	}
 	else {
