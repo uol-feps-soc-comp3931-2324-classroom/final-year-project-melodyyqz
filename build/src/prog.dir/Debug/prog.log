@@ -1,21 +1,2 @@
-﻿  main.cpp
-C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(109,55): warning C4305: 'argument': truncation from 'double' to 'const float'
-  (compiling source file '../../src/main.cpp')
-  
-C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(109,50): warning C4305: 'argument': truncation from 'double' to 'const float'
-  (compiling source file '../../src/main.cpp')
-  
-C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(109,45): warning C4305: 'argument': truncation from 'double' to 'const float'
-  (compiling source file '../../src/main.cpp')
-  
-C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(110,57): warning C4305: 'argument': truncation from 'double' to 'const float'
-  (compiling source file '../../src/main.cpp')
-  
-C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(110,52): warning C4305: 'argument': truncation from 'double' to 'const float'
-  (compiling source file '../../src/main.cpp')
-  
-C:\Users\melod\Documents\final-year-project-melodyyqz\src\scene.h(110,47): warning C4305: 'argument': truncation from 'double' to 'const float'
-  (compiling source file '../../src/main.cpp')
-  
-C:\Users\melod\Documents\final-year-project-melodyyqz\src\main.cpp(324,59): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+﻿  LINK : program database C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.pdb missing; performing full link
   prog.vcxproj -> C:\Users\melod\Documents\final-year-project-melodyyqz\build\bin\Debug\prog.exe

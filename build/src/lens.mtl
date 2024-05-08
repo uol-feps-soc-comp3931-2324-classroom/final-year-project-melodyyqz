@@ -1,0 +1,9 @@
+# MTL file for the lens
+newmtl GlassMaterial
+Ns 1000
+Ka 1.0 1.0 1.0
+Kd 0.0 0.0 0.0
+Ks 0.5 0.5 0.5
+Ni 1.5
+d 0.1
+illum 2

@@ -41,14 +41,17 @@ public:
     }
 
     // Add the object to the scene
-    void addMesh(const SimpleMeshData& mesh) {
+    void addMesh(const SimpleMeshData& mesh, const glm::mat4 &transform) {
 		RTCGeometry geom = rtcNewGeometry(device, RTC_GEOMETRY_TYPE_TRIANGLE);
 		rtcSetSharedGeometryBuffer(geom, RTC_BUFFER_TYPE_VERTEX, 0, RTC_FORMAT_FLOAT3, mesh.positions.data(), 0, sizeof(Eigen::Vector3f), mesh.positions.size());
 		rtcSetSharedGeometryBuffer(geom, RTC_BUFFER_TYPE_INDEX, 0, RTC_FORMAT_UINT3, mesh.indices.data(), 0, sizeof(unsigned int), mesh.indices.size()/3);
+        rtcSetGeometryTransform(geom, 0, RTC_FORMAT_FLOAT4X4_COLUMN_MAJOR, glm::value_ptr(transform));
+
 		rtcCommitGeometry(geom);
 		rtcAttachGeometry(scene, geom);
-		rtcReleaseGeometry(geom);
+		//rtcReleaseGeometry(geom);
         rtcCommitScene(scene);
+
 
         //// Log the scene bounds after committing the scene
         //RTCBounds bounds;
@@ -135,8 +138,34 @@ public:
     }
 
     Eigen::Vector3f getNormalAt(const Eigen::Vector3f& hitPoint) {
-        // Placeholder for normal retrieval
-        return Eigen::Vector3f(0, 1, 0);  // Example normal pointing upwards
+        return Eigen::Vector3f(0, 1, 0);  
+    }
+
+    Eigen::Vector3f getNormal(const RTCRayHit& rayHit, const SimpleMeshData& mesh) {
+        if (rayHit.hit.geomID == RTC_INVALID_GEOMETRY_ID) {
+            // No valid intersection, return a default normal
+            return Eigen::Vector3f(0, 1, 0);
+        }
+
+        // Vertices of the triangle hit
+        const Vec3f v0 = mesh.positions[mesh.indices[3 * rayHit.hit.primID]];
+        const Vec3f v1 = mesh.positions[mesh.indices[3 * rayHit.hit.primID + 1]];
+        const Vec3f v2 = mesh.positions[mesh.indices[3 * rayHit.hit.primID + 2]];
+
+        // Vertex normals
+        const Vec3f n0 = mesh.normals[3 * rayHit.hit.primID];
+        const Vec3f n1 = mesh.normals[3 * rayHit.hit.primID + 1];
+        const Vec3f n2 = mesh.normals[3 * rayHit.hit.primID + 2];
+
+        // Barycentric coordinates from the ray hit
+        float u = rayHit.hit.u;
+        float v = rayHit.hit.v;
+        float w = 1.0f - u - v;
+
+        // Interpolate normal
+        Vec3f interpolatedNormalVec3 = w * n0 + u * n1 + v * n2;
+        Eigen::Vector3f interpolatedNormal(interpolatedNormalVec3.x, interpolatedNormalVec3.y, interpolatedNormalVec3.z);
+        return interpolatedNormal.normalized();
     }
 
     bool tracePhoton(Photon& photon) {
@@ -169,16 +198,19 @@ public:
         if (rayHit.hit.geomID != RTC_INVALID_GEOMETRY_ID) {
             Eigen::Vector3f hitPoint = photon.position + photon.direction * rayHit.ray.tfar;
             MaterialProperties mat = getMaterialProperties(hitPoint);
-            //std::cout << "Hit point: " << hitPoint.transpose() << std::endl;
+            //if (!isGround(hitPoint))
+            //{
+            //    std::cout << "Hit point: " << hitPoint.transpose() << std::endl;
+            //}
             
-            bool result = true;
+            bool result = false;
 
             if (isGround(hitPoint) && photon.touchGlass == true) {
                 groundPhotonCount++;
 				photonMap.addPhoton(photon);
                 std::cout << "Photon hit ground at: " << hitPoint.transpose() << std::endl;
                 groundPhotons.push_back(glm::vec3(hitPoint.x(), hitPoint.y(), hitPoint.z()));
-                return false;
+                return true;
 			}
 
             if (shouldReflect(mat)) {
@@ -194,6 +226,7 @@ public:
                 }
             }
             else if (shouldTransmit(mat)) {
+                std::cout << "Transmitting photon" << std::endl;
                 photon.touchGlass = true;
                 Eigen::Vector3f newDirection = refract(photon.direction, getNormalAt(hitPoint), mat.indexOfRefraction);
                 photon.direction = newDirection;
@@ -216,7 +249,6 @@ public:
         photonMap.query(hitPoint, radius, nearbyPhotons);
 
         for (const auto& photon : nearbyPhotons) {
-            // Simplified calculation: This should be replaced with a more accurate model
             Eigen::Vector3f toPhoton = photon.position - hitPoint;
             float weight = std::max(0.f, normal.dot(toPhoton.normalized()));
             causticContribution += photon.energy * weight;

@@ -1,0 +1,8 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created 21.04.2015 230105
+
+mtllib glass-obj.mtl
+
+#
+# object Line001
+#
